@@ -24,7 +24,7 @@ public class Login_01_ValidateLoginForm {
 	@BeforeTest
 	public void beforeClass() {
 		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	}
 
 	@BeforeMethod
@@ -49,7 +49,6 @@ public class Login_01_ValidateLoginForm {
 	@Test
 	public void TC_03_EmailNotExist() {
 		driver.findElement(emailTextboxBy).sendKeys("testnotexist" + randomNumber() + "@test.com");
-		driver.findElement(loginButtonBy).click();
 		driver.findElement(loginButtonBy).click();
 		Assert.assertEquals(driver.findElement(errorMessageBy).getText().trim(), "User does not exist. Would you like to create a new account?");
 	}

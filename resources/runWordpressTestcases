@@ -3,6 +3,8 @@
   <test name="Run on Firefox">
     <classes>
       <class name="com.wordpress.category.Login_01_ValidateLoginForm"/>
+      <class name="com.wordpress.category.Login_02_Apply_AbstractPage_Init"/>
+      <class name="com.wordpress.Login_03_Apply_AbstractPage_Extend"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
