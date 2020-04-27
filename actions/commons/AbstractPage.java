@@ -133,7 +133,7 @@ public class AbstractPage {
 	}
 
 	public String getElementText(WebDriver driver, String locator) {
-		return findElementByXpath(driver, locator).getText().trim();
+		return findElementByXpath(driver, locator).getText();
 	}
 
 	public String getElementAttribute(WebDriver driver, String locator, String attributeName) {
