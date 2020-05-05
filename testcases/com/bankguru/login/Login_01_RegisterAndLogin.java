@@ -25,7 +25,8 @@ public class Login_01_RegisterAndLogin {
 	
 	@BeforeClass
 	public void beforeClass() {
-		driver = new FirefoxDriver();
+//		driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", ".\\browserDriver\\chromedriver81.exe");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
