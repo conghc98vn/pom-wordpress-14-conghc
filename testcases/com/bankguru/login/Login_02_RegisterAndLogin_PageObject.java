@@ -2,9 +2,9 @@ package com.bankguru.login;
 
 import org.testng.annotations.Test;
 
-import pageObjects.bankGuru.HomePageObject;
-import pageObjects.bankGuru.LoginPageObject;
-import pageObjects.bankGuru.RegisterPageObject;
+import pageFactory.bankGuru.HomePageObject;
+import pageFactory.bankGuru.LoginPageObject;
+import pageFactory.bankGuru.RegisterPageObject;
 
 import org.testng.annotations.BeforeClass;
 
@@ -12,11 +12,11 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class Login_01_RegisterAndLogin {
+public class Login_02_RegisterAndLogin_PageObject {
 	WebDriver driver;
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
@@ -25,8 +25,8 @@ public class Login_01_RegisterAndLogin {
 	
 	@BeforeClass
 	public void beforeClass() {
-//		driver = new FirefoxDriver();
 		System.setProperty("webdriver.chrome.driver", ".\\browserDriver\\chromedriver81.exe");
+		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
