@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Word Press" parallel="tests" thread-count="3">
 
-  <test name="Run on FIREFOX">
-  	<parameter name="browser" value="firefox" />
-    <classes>
-      <class name="com.wordpress.login.Login_05_Multiple_Browser_Parallel"/>
-    </classes>
-  </test> 
-  
    <test name="Run on CHROME">
    	<parameter name="browser" value="chrome" />
     <classes>
-      <class name="com.wordpress.login.Login_05_Multiple_Browser_Parallel"/>
-    </classes>
-  </test> 
-  
-   <test name="Run on EDGE">
-   	<parameter name="browser" value="edge" />
-    <classes>
-      <class name="com.wordpress.login.Login_05_Multiple_Browser_Parallel"/>
+      <class name="com.wordpress.login.Login_06_Browser_Facoty_Pattern"/>
     </classes>
   </test> 
   
