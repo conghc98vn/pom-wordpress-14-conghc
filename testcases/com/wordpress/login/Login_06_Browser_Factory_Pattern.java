@@ -17,7 +17,7 @@ import pageFactory.wordpress.DashboardPageObject;
 import pageFactory.wordpress.LoginPageObject;
 import pageFactory.wordpress.PageGenenratorManager_PageFactory_WordPress;
 
-public class Login_06_Browser_Facoty_Pattern extends AbstractTest {
+public class Login_06_Browser_Factory_Pattern extends AbstractTest {
 	WebDriver driver;
 	String loginPageUrl;
 	LoginPageObject loginPage;

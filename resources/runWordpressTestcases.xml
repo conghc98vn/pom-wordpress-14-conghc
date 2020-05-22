@@ -4,7 +4,7 @@
    <test name="Run on CHROME">
    	<parameter name="browser" value="chrome" />
     <classes>
-      <class name="com.wordpress.login.Login_06_Browser_Facoty_Pattern"/>
+      <class name="com.wordpress.login.Login_07_WebDriver_Life_Cycle"/>
     </classes>
   </test> 
   
