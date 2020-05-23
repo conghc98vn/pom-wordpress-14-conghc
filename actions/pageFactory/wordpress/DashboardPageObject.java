@@ -3,7 +3,7 @@ package pageFactory.wordpress;
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPage;
-import pageUI.wordpress.DashboardPageIUI;
+import pageUI.wordpress.DashboardPageUI;
 
 public class DashboardPageObject extends AbstractPage {
 	WebDriver driver;
@@ -13,10 +13,12 @@ public class DashboardPageObject extends AbstractPage {
 	}
 	
 	public boolean isHeaderTextDisplayed() {
-		waitForElementVissible(driver, DashboardPageIUI.HEADER_TEXT);
-		return isElementDisplay(driver, DashboardPageIUI.HEADER_TEXT);
+		waitForElementVissible(driver, DashboardPageUI.HEADER_TEXT);
+		return isElementDisplay(driver, DashboardPageUI.HEADER_TEXT);
 	}
 
-	
-	public static final String HEADER_TEXT = "//h1[text()='Dashboard']";
+	public void clickToPostsMenu() {
+		// TODO Auto-generated method stub
+		
+	}
 }

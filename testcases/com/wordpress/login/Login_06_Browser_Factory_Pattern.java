@@ -15,7 +15,7 @@ import browserFactory.DriverManager;
 import commons.AbstractTest;
 import pageFactory.wordpress.DashboardPageObject;
 import pageFactory.wordpress.LoginPageObject;
-import pageFactory.wordpress.PageGenenratorManager_PageFactory_WordPress;
+import pageFactory.wordpress.PageGenenratorManager;
 
 public class Login_06_Browser_Factory_Pattern extends AbstractTest {
 	WebDriver driver;
@@ -30,7 +30,7 @@ public class Login_06_Browser_Factory_Pattern extends AbstractTest {
 		driverManager = BrowserDriverFactory.getBrowserDriver(browserName);
 		driver = driverManager.getDriver();
 		
-		loginPage = PageGenenratorManager_PageFactory_WordPress.getLoginPage(driver);
+		loginPage = PageGenenratorManager.getLoginPage(driver);
 		
 		loginPageUrl = loginPage.getLoginPageUrl();
 	}

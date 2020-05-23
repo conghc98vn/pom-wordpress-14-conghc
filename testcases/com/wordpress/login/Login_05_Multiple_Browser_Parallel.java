@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 import commons.AbstractTest;
 import pageFactory.wordpress.DashboardPageObject;
 import pageFactory.wordpress.LoginPageObject;
-import pageFactory.wordpress.PageGenenratorManager_PageFactory_WordPress;
+import pageFactory.wordpress.PageGenenratorManager;
 
 public class Login_05_Multiple_Browser_Parallel extends AbstractTest {
 	WebDriver driver;
@@ -26,7 +26,7 @@ public class Login_05_Multiple_Browser_Parallel extends AbstractTest {
 	public void beforeClass(String browserName) {
 		driver = getBrowserDriver(browserName);
 		
-		loginPage = PageGenenratorManager_PageFactory_WordPress.getLoginPage(driver);
+		loginPage = PageGenenratorManager.getLoginPage(driver);
 		
 		loginPageUrl = loginPage.getLoginPageUrl();
 	}

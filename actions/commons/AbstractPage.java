@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pageObjects.wordpress.MediaPageObject;
-import pageObjects.wordpress.PageGenenratorManager_PageObject_WordPress;
+import pageObjects.wordpress.PageGenenratorManager;
 import pageObjects.wordpress.PagesPageObject;
 import pageObjects.wordpress.PostsPageObject;
 
@@ -323,23 +323,11 @@ public class AbstractPage {
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(locator)));
 	}
 	
-	public PagesPageObject clickToPagesMenu(WebDriver driver) {
-		waitForElementInvissible(driver, AbstractPageUI.PAGES_LINK);
-		clickToElement(driver, AbstractPageUI.PAGES_LINK);
-		return PageGenenratorManager_PageObject_WordPress.getPagesPage(driver);
-	}
 	
-	public PostsPageObject clickToPostsMenu(WebDriver driver) {
-		waitForElementVissible(driver, AbstractPageUI.POSTS_LINK);
-		clickToElement(driver, AbstractPageUI.POSTS_LINK);
-		return PageGenenratorManager_PageObject_WordPress.getPostsPage(driver);
-	}
 	
-	public MediaPageObject clickToMediaMenu(WebDriver driver) {
-		waitForElementVissible(driver, AbstractPageUI.MEDIA_LINK);
-		clickToElement(driver, AbstractPageUI.MEDIA_LINK);
-		return PageGenenratorManager_PageObject_WordPress.getMediaPage(driver);
-	}
+	
+	
+
 	
 	private Select select;
 	private Actions action;

@@ -2,7 +2,7 @@ package pageFactory.bankGuru;
 
 import org.openqa.selenium.WebDriver;
 
-public class PageGenenratorManager_PageFactory_BankGuru {
+public class PageGenenratorManager {
 	public static LoginPageObject getLoginPage(WebDriver driver) {
 		return new LoginPageObject(driver);
 	}

@@ -23,6 +23,7 @@ public abstract class DriverManager {
 			createDriver();
 		}
 		driver.get(GlobalConstans.WORDPRESS_URL);
+		
 		driver.manage().timeouts().implicitlyWait(GlobalConstans.LONG_TIMEOUT, TimeUnit.SECONDS);
 		return driver;
 	}

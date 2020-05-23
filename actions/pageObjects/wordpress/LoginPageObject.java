@@ -10,6 +10,7 @@ public class LoginPageObject extends AbstractPage {
 
 	public LoginPageObject(WebDriver driver) {
 		this.driver = driver;
+		System.out.println("Driver at Login Page = " + driver.toString());
 	}
 
 	public void inputToEmailTextbox(String email) {
@@ -17,9 +18,10 @@ public class LoginPageObject extends AbstractPage {
 		sendkeyToElement(driver, LoginPageUI.EMAIL_TEXTBOX, email);
 	}
 
-	public void clickToContinueOrLoginButton() {
+	public DashboardPageObject clickToContinueOrLoginButton() {
 		waitForElementVissible(driver, LoginPageUI.CONTINUE_OR_LOGIN_BUTTON);
 		clickToElement(driver, LoginPageUI.CONTINUE_OR_LOGIN_BUTTON);
+		return PageGenenratorManager.getDashboardPage(driver);
 	}
 
 	public String getEmailOrPasswordErrorMessage() {

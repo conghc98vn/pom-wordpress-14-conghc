@@ -2,9 +2,9 @@
 <suite name="Word Press" parallel="tests" thread-count="3">
 
    <test name="Run on CHROME">
-   	<parameter name="browser" value="chrome" />
+   	<parameter name="browser" value="firefox" />
     <classes>
-      <class name="com.wordpress.login.Login_07_WebDriver_Life_Cycle"/>
+      <class name="com.wordpress.login.Login_07_WebDriver_LifeCycle"/>
     </classes>
   </test> 
   
