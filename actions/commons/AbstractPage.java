@@ -17,6 +17,9 @@ import pageObjects.wordpress.MediaPageObject;
 import pageObjects.wordpress.PageGenenratorManager;
 import pageObjects.wordpress.PagesPageObject;
 import pageObjects.wordpress.PostsPageObject;
+import pageUI.wordpress.MediaPageUI;
+import pageUI.wordpress.PagesPageUI;
+import pageUI.wordpress.PostsPageUI;
 
 //public abstract class AbstractPage {
 public class AbstractPage {
@@ -247,8 +250,7 @@ public class AbstractPage {
 
 	public boolean verifyTextInInnerText(WebDriver driver, String textExpected) {
 		jsExecutor = (JavascriptExecutor) driver;
-		String textActual = (String) jsExecutor
-				.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
+		String textActual = (String) jsExecutor.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
 		return textActual.equals(textExpected);
 	}
 
@@ -298,36 +300,52 @@ public class AbstractPage {
 
 	public boolean isImageLoaded(WebDriver driver, String locator) {
 		jsExecutor = (JavascriptExecutor) driver;
-		boolean status = (boolean) jsExecutor.executeScript
-				("return argument[0].complete && typeof arguments[0]" 
-						+ ".naturalWith != 'undefined' && arguments[0]"
-						+ ".naturalWith > 0", findElementByXpath(driver, locator));
+		boolean status = (boolean) jsExecutor.executeScript("return argument[0].complete && typeof arguments[0]" + ".naturalWith != 'undefined' && arguments[0]" + ".naturalWith > 0", findElementByXpath(driver, locator));
 		if (status) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public void waitForElementVissible(WebDriver driver, String locator) {
 		explicitWait = new WebDriverWait(driver, longtime);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXpath(locator)));
 	}
-	
+
 	public void waitForElementInvissible(WebDriver driver, String locator) {
 		explicitWait = new WebDriverWait(driver, longtime);
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(byXpath(locator)));
 	}
-	
+
 	public void waitForElementClickable(WebDriver driver, String locator) {
 		explicitWait = new WebDriverWait(driver, longtime);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(locator)));
 	}
-	
-	
-	
-	
-	
 
+	// Common Page - WordPress
+	
+	public MediaPageObject clickToMediaMenu(WebDriver driver) {
+		waitForElementVissible(driver, MediaPageUI.MEDIA_LINK);
+		clickToElement(driver, MediaPageUI.MEDIA_LINK);
+		return PageGenenratorManager.getMediaPage(driver);
+	}
+
+	public PagesPageObject clickToPagesMenu(WebDriver driver) {
+		waitForElementInvissible(driver, PagesPageUI.PAGES_LINK);
+		clickToElement(driver, PagesPageUI.PAGES_LINK);
+		return PageGenenratorManager.getPagesPage(driver);
+	}
+
+	public PostsPageObject clickToPostsMenu(WebDriver driver) {
+		waitForElementVissible(driver, PostsPageUI.POSTS_LINK);
+		clickToElement(driver, PostsPageUI.POSTS_LINK);
+		return PageGenenratorManager.getPostsPage(driver);
+	}
+
+	// Common Page - BankGuru
+	
+	
+	// Common Page - NopCommerce
 	
 	private Select select;
 	private Actions action;

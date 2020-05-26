@@ -1,6 +1,7 @@
 package com.wordpress.login;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -29,23 +30,22 @@ public class Login_07_WebDriver_LifeCycle extends AbstractTest {
 		loginPage.inputToEmailTextbox("automationeditor");
 		loginPage.clickToContinueOrLoginButton();
 		loginPage.inputToPasswordTextbox("automationfc");
-		loginPage.clickToContinueOrLoginButton();
-		dashboardPage = new DashboardPageObject(driver);
-//		Assert.assertTrue(dashboardPage.isHeaderTextDisplayed());
+		dashboardPage = loginPage.clickToContinueOrLoginButton();
+		Assert.assertTrue(dashboardPage.isHeaderTextDisplayed());
 	}
 
 	@Test
 	public void TC_02_NavigateToPage() {
 		// Step 03 Dashboard -> Posts
-		postsPage = dashboardPage.clickToPostsMenu();
+		postsPage = dashboardPage.clickToPostsMenu(driver);
 		// Step 04 Posts -> Pages
-		pagesPage = postsPage.clickToPagesMenu();
+		pagesPage = postsPage.clickToPagesMenu(driver);
 		// Step 05 Pages -> Media
-		mediaPage = pagesPage.clickToMediaMenu();
+		mediaPage = pagesPage.clickToMediaMenu(driver);
 		// Step 06 Media -> Posts
-//		postsPage = mediaPage.clickToPostsMenu();
+		postsPage = mediaPage.clickToPostsMenu(driver);
 //		// Step 07 Posts -> Pages
-//		dashboard = postsPage.clickToPagesMenu();
+		pagesPage = postsPage.clickToPagesMenu(driver);
 	}
 
 	@AfterTest
