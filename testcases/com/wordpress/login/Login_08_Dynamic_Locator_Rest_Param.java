@@ -49,6 +49,7 @@ public class Login_08_Dynamic_Locator_Rest_Param extends AbstractTest {
 
 		dashboardPage = (DashboardPageObject) mediaPage.clickToLessDynamicPageMenu(driver, "Dashboard");
 	}
+	
 
 	@Test
 	public void TC_02_More_Page() {
