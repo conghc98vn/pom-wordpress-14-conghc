@@ -37,7 +37,7 @@ public abstract class AbstractTest {
 
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-		driver.get("https://automationfc.wordpress.com/wp-admin/");
+		driver.get(GlobalConstans.WORDPRESS_URL);
 
 		return driver;
 	}

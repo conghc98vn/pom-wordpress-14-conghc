@@ -83,7 +83,7 @@ public class AbstractPage {
 	}
 
 	public void waitAlertPresence(WebDriver driver, String locator) {
-		explicitWait = new WebDriverWait(driver, longtime);
+		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.alertIsPresent());
 	}
 
@@ -137,8 +137,16 @@ public class AbstractPage {
 		return driver.findElements(By.xpath(locator));
 	}
 
+	public String castToObject(String locator, String... values) {
+		return String.format(locator, (Object[]) values);
+	}
+
 	public void clickToElement(WebDriver driver, String locator) {
 		findElementByXpath(driver, locator).click();
+	}
+
+	public void clickToElement(WebDriver driver, String locator, String values) {
+		findElementByXpath(driver, castToObject(locator, values)).click();
 	}
 
 	public void sendkeyToElement(WebDriver driver, String locator, String value) {
@@ -172,7 +180,7 @@ public class AbstractPage {
 		jsExecutor.executeScript("arguments[0].click();", element);
 		sleepInSecond(1);
 
-		explicitWait = new WebDriverWait(driver, longtime);
+		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(byXpath(allItemXpath)));
 		elements = findElementsByXpath(driver, allItemXpath);
 
@@ -212,6 +220,10 @@ public class AbstractPage {
 
 	public boolean isElementDisplay(WebDriver driver, String locator) {
 		return findElementByXpath(driver, locator).isDisplayed();
+	}
+
+	public boolean isElementDisplay(WebDriver driver, String locator, String... values) {
+		return findElementByXpath(driver, castToObject(locator, values)).isDisplayed();
 	}
 
 	public boolean isElementEnabled(WebDriver driver, String locator) {
@@ -257,7 +269,8 @@ public class AbstractPage {
 
 	public boolean verifyTextInInnerText(WebDriver driver, String textExpected) {
 		jsExecutor = (JavascriptExecutor) driver;
-		String textActual = (String) jsExecutor.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
+		String textActual = (String) jsExecutor
+				.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
 		return textActual.equals(textExpected);
 	}
 
@@ -275,13 +288,15 @@ public class AbstractPage {
 		jsExecutor = (JavascriptExecutor) driver;
 		element = findElementByXpath(driver, locator);
 		String originalStyle = element.getAttribute("style");
-		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 5px solid red; border-style: dashed;");
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style",
+				"border: 5px solid red; border-style: dashed;");
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style",
+				originalStyle);
 
 	}
 
@@ -297,17 +312,23 @@ public class AbstractPage {
 
 	public void sendkeyToElementByJS(WebDriver driver, String locator, String value) {
 		jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')", findElementByXpath(driver, locator));
+		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')",
+				findElementByXpath(driver, locator));
 	}
 
 	public void removeAttributeInDOM(WebDriver driver, String locator, String attributeRemove) {
 		jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');", findElementByXpath(driver, locator));
+		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');",
+				findElementByXpath(driver, locator));
 	}
 
 	public boolean isImageLoaded(WebDriver driver, String locator) {
 		jsExecutor = (JavascriptExecutor) driver;
-		boolean status = (boolean) jsExecutor.executeScript("return argument[0].complete && typeof arguments[0]" + ".naturalWith != 'undefined' && arguments[0]" + ".naturalWith > 0", findElementByXpath(driver, locator));
+		boolean status = (boolean) jsExecutor
+				.executeScript(
+						"return argument[0].complete && typeof arguments[0]"
+								+ ".naturalWith != 'undefined' && arguments[0]" + ".naturalWith > 0",
+						findElementByXpath(driver, locator));
 		if (status) {
 			return true;
 		}
@@ -315,18 +336,50 @@ public class AbstractPage {
 	}
 
 	public void waitForElementVissible(WebDriver driver, String locator) {
-		explicitWait = new WebDriverWait(driver, longtime);
+		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXpath(locator)));
 	}
 
+	public void waitForElementVissible(WebDriver driver, String locator, String... values) {
+		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXpath(castToObject(locator, values))));
+	}
+
 	public void waitForElementInvissible(WebDriver driver, String locator) {
-		explicitWait = new WebDriverWait(driver, longtime);
+		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(byXpath(locator)));
 	}
 
 	public void waitForElementClickable(WebDriver driver, String locator) {
-		explicitWait = new WebDriverWait(driver, longtime);
+		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(locator)));
+	}
+
+	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
+		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
+		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(castToObject(locator, values))));
+	}
+
+	// Dynamic locator WordPress (Apply cho ít page 10-15-20)
+	public AbstractPage clickToLessDynamicPageMenu(WebDriver driver, String pageName) {
+		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);
+		clickToElement(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);
+		
+		if (pageName.equals("Posts")) {
+			return PageGenenratorManager.getPostsPage(driver);
+		} else if (pageName.equals("Pages")) {
+			return PageGenenratorManager.getPagesPage(driver);
+		} else if (pageName.equals("Media")) {
+			return PageGenenratorManager.getMediaPage(driver);
+		} else {
+			return PageGenenratorManager.getDashboardPage(driver);
+		}
+	}
+	
+	// Dynamic locator WordPress (Apply cho quá nhiều page)
+	public void clickToMoreDynamicPageMenu(WebDriver driver, String pageName) {
+		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);
+		clickToElement(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);
 	}
 
 	// Common Page - WordPress
@@ -420,7 +473,6 @@ public class AbstractPage {
 
 	private Select select;
 	private Actions action;
-	private int longtime = 30;
 	private WebElement element;
 	private List<WebElement> elements;
 	private WebDriverWait explicitWait;

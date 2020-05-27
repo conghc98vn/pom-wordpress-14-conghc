@@ -16,7 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class Login_02_RegisterAndLogin_PageObject {
+public class Login_03_SwitchPage {
 	WebDriver driver;
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;

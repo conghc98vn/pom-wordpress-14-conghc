@@ -20,4 +20,7 @@ public class AbstractPageUI {
 	public static final String SEARCH_LINK = "//li/a[text()='Deposit']";
 	public static final String SHIPPING_AND_RETURN_LINK = "//li/a[text()='Deposit']";
 	public static final String SIMEMAP_LINK = "//li/a[text()='Deposit']";
+	
+	// Dynamic Locator
+	public static final String DYNAMIC_PAGE_LINK = "//div[@class='wp-menu-name' and text()='%s']";
 }
