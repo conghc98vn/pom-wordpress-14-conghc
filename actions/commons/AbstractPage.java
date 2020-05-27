@@ -13,13 +13,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObject.NopCommerce.FooterMyAccountPageObject;
+import pageObject.NopCommerce.HeaderWishlistPageObject;
+import pageObject.NopCommerce.SearchPageObject;
+import pageObject.NopCommerce.ShippingAndReturnPageObject;
+import pageObject.NopCommerce.SitemapPageObject;
+import pageObjects.bankGuru.DepositPageObject;
+import pageObjects.bankGuru.HomePageObject;
+import pageObjects.bankGuru.NewAccountPageObject;
+import pageObjects.bankGuru.NewCustomerPageObject;
+import pageObjects.bankGuru.WithdrawalPageObject;
 import pageObjects.wordpress.MediaPageObject;
 import pageObjects.wordpress.PageGenenratorManager;
 import pageObjects.wordpress.PagesPageObject;
 import pageObjects.wordpress.PostsPageObject;
-import pageUI.wordpress.MediaPageUI;
-import pageUI.wordpress.PagesPageUI;
-import pageUI.wordpress.PostsPageUI;
 
 //public abstract class AbstractPage {
 public class AbstractPage {
@@ -323,30 +330,94 @@ public class AbstractPage {
 	}
 
 	// Common Page - WordPress
-	
+
 	public MediaPageObject clickToMediaMenu(WebDriver driver) {
-		waitForElementVissible(driver, MediaPageUI.MEDIA_LINK);
-		clickToElement(driver, MediaPageUI.MEDIA_LINK);
+		waitForElementVissible(driver, AbstractPageUI.MEDIA_LINK);
+		clickToElement(driver, AbstractPageUI.MEDIA_LINK);
 		return PageGenenratorManager.getMediaPage(driver);
 	}
 
 	public PagesPageObject clickToPagesMenu(WebDriver driver) {
-		waitForElementInvissible(driver, PagesPageUI.PAGES_LINK);
-		clickToElement(driver, PagesPageUI.PAGES_LINK);
+		waitForElementInvissible(driver, AbstractPageUI.PAGES_LINK);
+		clickToElement(driver, AbstractPageUI.PAGES_LINK);
 		return PageGenenratorManager.getPagesPage(driver);
 	}
 
 	public PostsPageObject clickToPostsMenu(WebDriver driver) {
-		waitForElementVissible(driver, PostsPageUI.POSTS_LINK);
-		clickToElement(driver, PostsPageUI.POSTS_LINK);
+		waitForElementVissible(driver, AbstractPageUI.POSTS_LINK);
+		clickToElement(driver, AbstractPageUI.POSTS_LINK);
 		return PageGenenratorManager.getPostsPage(driver);
 	}
 
 	// Common Page - BankGuru
-	
-	
+	public NewCustomerPageObject clickToNewCustomerMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.NEWCUSTOMER_LINK);
+		clickToElement(driver, AbstractPageUI.NEWCUSTOMER_LINK);
+		return pageObjects.bankGuru.PageGenenratorManager.getNewCustomerPage(driver);
+	}
+
+	public DepositPageObject clickToDepositPageMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.DEPOSIT_LINK);
+		clickToElement(driver, AbstractPageUI.DEPOSIT_LINK);
+		return pageObjects.bankGuru.PageGenenratorManager.getDepositPage(driver);
+	}
+
+	public HomePageObject clickToHomeMenuBGR(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.HOMEPAGE_LINK_BGR);
+		clickToElement(driver, AbstractPageUI.HOMEPAGE_LINK_BGR);
+		return pageObjects.bankGuru.PageGenenratorManager.getHomePage(driver);
+	}
+
+	public NewAccountPageObject clickToNewAccontMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.NEWACCOUNT_LINK);
+		clickToElement(driver, AbstractPageUI.NEWACCOUNT_LINK);
+		return pageObjects.bankGuru.PageGenenratorManager.getNewAccountPage(driver);
+	}
+
+	public WithdrawalPageObject clickToWithdrawalMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.WITHDRAWAL_LINK);
+		clickToElement(driver, AbstractPageUI.WITHDRAWAL_LINK);
+		return pageObjects.bankGuru.PageGenenratorManager.getWithdrawalPage(driver);
+	}
+
 	// Common Page - NopCommerce
-	
+
+	public FooterMyAccountPageObject clickToFooterMyAccountMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.FOOTER_MY_ACCOUNT_LINK);
+		clickToElement(driver, AbstractPageUI.FOOTER_MY_ACCOUNT_LINK);
+		return pageObject.NopCommerce.PageGenenratorManager.getFooterMyAccountPage(driver);
+	}
+
+	public HeaderWishlistPageObject clickToHeaderWishlistMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.HEADER_WISHLIST);
+		clickToElement(driver, AbstractPageUI.HEADER_WISHLIST);
+		return pageObject.NopCommerce.PageGenenratorManager.getHeaderWishlistPage(driver);
+	}
+
+	public pageObject.NopCommerce.HomePageObject clickToHomeMenuNOP(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.HOMEPAGE_LINK_NOP);
+		clickToElement(driver, AbstractPageUI.HOMEPAGE_LINK_NOP);
+		return pageObject.NopCommerce.PageGenenratorManager.getHomePage(driver);
+	}
+
+	public SearchPageObject clickToSearchMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.SEARCH_LINK);
+		clickToElement(driver, AbstractPageUI.SEARCH_LINK);
+		return pageObject.NopCommerce.PageGenenratorManager.getSearchPage(driver);
+	}
+
+	public ShippingAndReturnPageObject clickToShippingAndReturnMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.SHIPPING_AND_RETURN_LINK);
+		clickToElement(driver, AbstractPageUI.SHIPPING_AND_RETURN_LINK);
+		return pageObject.NopCommerce.PageGenenratorManager.getShippingAndReturnPage(driver);
+	}
+
+	public SitemapPageObject clickToSitemapMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.SIMEMAP_LINK);
+		clickToElement(driver, AbstractPageUI.SIMEMAP_LINK);
+		return pageObject.NopCommerce.PageGenenratorManager.getSitemapPage(driver);
+	}
+
 	private Select select;
 	private Actions action;
 	private int longtime = 30;
