@@ -137,7 +137,7 @@ public class AbstractPage {
 		return driver.findElements(By.xpath(locator));
 	}
 
-	public String castToObject(String locator, String... values) {
+	public String castToObject(String locator, String...values) {
 		return String.format(locator, (Object[]) values);
 	}
 
@@ -151,6 +151,12 @@ public class AbstractPage {
 
 	public void sendkeyToElement(WebDriver driver, String locator, String value) {
 		element = findElementByXpath(driver, locator);
+		element.clear();
+		element.sendKeys(value);
+	}
+	
+	public void sendkeyToElement(WebDriver driver, String locator, String value, String...values) {
+		element = findElementByXpath(driver, castToObject(locator, values));
 		element.clear();
 		element.sendKeys(value);
 	}
@@ -201,6 +207,11 @@ public class AbstractPage {
 
 	public int countElementNumber(WebDriver driver, String locator) {
 		elements = findElementsByXpath(driver, locator);
+		return elements.size();
+	}
+	
+	public int countElementNumber(WebDriver driver, String locator, String... values) {
+		elements = findElementsByXpath(driver, castToObject(locator, values));
 		return elements.size();
 	}
 
@@ -262,6 +273,11 @@ public class AbstractPage {
 		action.sendKeys(findElementByXpath(driver, locator), key).perform();
 	}
 
+	public void sendKeyboardToElement(WebDriver driver, String locator, Keys key, String...values) {
+		action = new Actions(driver);
+		action.sendKeys(findElementByXpath(driver, castToObject(locator, values)), key).perform();
+	}
+	
 	public Object executeForBrowser(WebDriver driver, String javaSript) {
 		jsExecutor = (JavascriptExecutor) driver;
 		return jsExecutor.executeScript(javaSript);
@@ -340,7 +356,7 @@ public class AbstractPage {
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXpath(locator)));
 	}
 
-	public void waitForElementVissible(WebDriver driver, String locator, String... values) {
+	public void waitForElementVissible(WebDriver driver, String locator, String...values) {
 		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXpath(castToObject(locator, values))));
 	}
