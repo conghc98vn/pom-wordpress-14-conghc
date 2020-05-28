@@ -145,7 +145,7 @@ public class AbstractPage {
 		findElementByXpath(driver, locator).click();
 	}
 
-	public void clickToElement(WebDriver driver, String locator, String values) {
+	public void clickToElement(WebDriver driver, String locator, String...values) {
 		findElementByXpath(driver, castToObject(locator, values)).click();
 	}
 
