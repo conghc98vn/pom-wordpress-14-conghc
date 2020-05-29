@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Word Press" parallel="tests" thread-count="3">
 
-   <test name="Run on CHROME">
+   <test name="Run on FIREFOX">
    	<parameter name="browser" value="firefox" />
     <classes>
       <class name="com.wordpress.login.Login_08_Dynamic_Locator_Rest_Param"/>
