@@ -133,7 +133,7 @@ public class AbstractPage {
 		return driver.findElements(By.xpath(locator));
 	}
 
-	public String castToObject(String locator, String...values) {
+	public String castToObject(String locator, String... values) {
 		return String.format(locator, (Object[]) values);
 	}
 
@@ -141,7 +141,7 @@ public class AbstractPage {
 		findElementByXpath(driver, locator).click();
 	}
 
-	public void clickToElement(WebDriver driver, String locator, String...values) {
+	public void clickToElement(WebDriver driver, String locator, String... values) {
 		findElementByXpath(driver, castToObject(locator, values)).click();
 	}
 
@@ -150,8 +150,8 @@ public class AbstractPage {
 		element.clear();
 		element.sendKeys(value);
 	}
-	
-	public void sendkeyToElement(WebDriver driver, String locator, String value, String...values) {
+
+	public void sendkeyToElement(WebDriver driver, String locator, String value, String... values) {
 		element = findElementByXpath(driver, castToObject(locator, values));
 		element.clear();
 		element.sendKeys(value);
@@ -205,7 +205,7 @@ public class AbstractPage {
 		elements = findElementsByXpath(driver, locator);
 		return elements.size();
 	}
-	
+
 	public int countElementNumber(WebDriver driver, String locator, String... values) {
 		elements = findElementsByXpath(driver, castToObject(locator, values));
 		return elements.size();
@@ -269,11 +269,11 @@ public class AbstractPage {
 		action.sendKeys(findElementByXpath(driver, locator), key).perform();
 	}
 
-	public void sendKeyboardToElement(WebDriver driver, String locator, Keys key, String...values) {
+	public void sendKeyboardToElement(WebDriver driver, String locator, Keys key, String... values) {
 		action = new Actions(driver);
 		action.sendKeys(findElementByXpath(driver, castToObject(locator, values)), key).perform();
 	}
-	
+
 	public Object executeForBrowser(WebDriver driver, String javaSript) {
 		jsExecutor = (JavascriptExecutor) driver;
 		return jsExecutor.executeScript(javaSript);
@@ -352,7 +352,7 @@ public class AbstractPage {
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXpath(locator)));
 	}
 
-	public void waitForElementVissible(WebDriver driver, String locator, String...values) {
+	public void waitForElementVissible(WebDriver driver, String locator, String... values) {
 		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXpath(castToObject(locator, values))));
 	}
@@ -360,6 +360,12 @@ public class AbstractPage {
 	public void waitForElementInvissible(WebDriver driver, String locator) {
 		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(byXpath(locator)));
+	}
+
+	public void waitForElementsInvissible(WebDriver driver, String locator) {
+		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
+		elements = findElementsByXpath(driver, locator);
+		explicitWait.until(ExpectedConditions.invisibilityOfAllElements(elements));
 	}
 
 	public void waitForElementClickable(WebDriver driver, String locator) {
@@ -372,11 +378,21 @@ public class AbstractPage {
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(castToObject(locator, values))));
 	}
 
+	public void uploadMultipleFiles(WebDriver driver, String... fileNames) {
+		String fullFileName = "";
+		for (String file : fileNames) {
+			fullFileName = fullFileName + GlobalConstans.UPLOAD_FOLDER + file + "\n";
+		}
+
+		fullFileName = fullFileName.trim();
+		sendkeyToElement(driver, AbstractPageUI.UPLOAD_FILE_TYPE, fullFileName);
+	}
+
 	// Dynamic locator WordPress (Apply cho ít page 10-15-20)
 	public AbstractPage clickToLessDynamicPageMenu(WebDriver driver, String pageName) {
 		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);
 		clickToElement(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);
-		
+
 		if (pageName.equals("Posts")) {
 			return PageGenenratorManager.getPostsPage(driver);
 		} else if (pageName.equals("Pages")) {
@@ -387,7 +403,7 @@ public class AbstractPage {
 			return PageGenenratorManager.getDashboardPage(driver);
 		}
 	}
-	
+
 	// Dynamic locator WordPress (Apply cho quá nhiều page)
 	public void clickToMoreDynamicPageMenu(WebDriver driver, String pageName) {
 		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);
@@ -412,6 +428,12 @@ public class AbstractPage {
 		waitForElementVissible(driver, AbstractPageUI.POSTS_LINK);
 		clickToElement(driver, AbstractPageUI.POSTS_LINK);
 		return PageGenenratorManager.getPostsPage(driver);
+	}
+	
+	public boolean areFileUploadedDisplay(WebDriver driver, String...fileNames) {
+		waitForElementsInvissible(driver, AbstractPageUI.MEDIA_INPROGRESS_BAR_ICON);
+		  
+		return true;
 	}
 
 	// Common Page - BankGuru
@@ -482,7 +504,7 @@ public class AbstractPage {
 //		clickToElement(driver, AbstractPageUI.SIMEMAP_LINK);
 //		return pageObject.NopCommerce.PageGenenratorManager.getSitemapPage(driver);
 //	}
-	
+
 	public int randomNumber() {
 		Random rand = new Random();
 		return rand.nextInt(9999);
