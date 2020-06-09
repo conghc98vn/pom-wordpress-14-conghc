@@ -1,5 +1,6 @@
 package commons;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -357,6 +358,11 @@ public class AbstractPage {
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(byXpath(castToObject(locator, values))));
 	}
 
+	public void waitForElementsVissible(WebDriver driver, String locator) {
+		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
+		explicitWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(byXpath(locator)));
+	}
+
 	public void waitForElementInvissible(WebDriver driver, String locator) {
 		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(byXpath(locator)));
@@ -373,7 +379,7 @@ public class AbstractPage {
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(locator)));
 	}
 
-	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
+	public void waitForElementsClickable(WebDriver driver, String locator, String... values) {
 		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(castToObject(locator, values))));
 	}
@@ -383,8 +389,8 @@ public class AbstractPage {
 		for (String file : fileNames) {
 			fullFileName = fullFileName + GlobalConstans.UPLOAD_FOLDER + file + "\n";
 		}
-
 		fullFileName = fullFileName.trim();
+		System.out.println(fullFileName);
 		sendkeyToElement(driver, AbstractPageUI.UPLOAD_FILE_TYPE, fullFileName);
 	}
 
@@ -429,11 +435,42 @@ public class AbstractPage {
 		clickToElement(driver, AbstractPageUI.POSTS_LINK);
 		return PageGenenratorManager.getPostsPage(driver);
 	}
-	
-	public boolean areFileUploadedDisplay(WebDriver driver, String...fileNames) {
+
+	public boolean areFileUploadedDisplay(WebDriver driver, String... fileNames) {
+		boolean status = false;
+		int number = fileNames.length;
+
 		waitForElementsInvissible(driver, AbstractPageUI.MEDIA_INPROGRESS_BAR_ICON);
-		  
-		return true;
+		sleepInSecond(5);
+		waitForElementsVissible(driver, AbstractPageUI.ALL_UPLOAD_IMAGE);
+		elements = findElementsByXpath(driver, AbstractPageUI.ALL_UPLOAD_IMAGE);
+
+		// ArrayList chứa những giá trị này
+		List<String> imageValues = new ArrayList<>();
+
+		int i = 0;
+		for (WebElement image : elements) {
+			System.out.println(image.getAttribute("src"));
+			imageValues.add(image.getAttribute("src"));
+			i++;
+			if (i == number) {
+				break;
+			}
+		}
+
+		for (String fileName : fileNames) {
+			String[] files = fileName.split("\\.");
+			fileName = files[0].toLowerCase();
+
+			for (i = 0; i < imageValues.size(); i++) {
+				if (!imageValues.get(i).contains(fileName)) {
+					status = false;
+				} else {
+					status = true;
+				}
+			}
+		}
+		return status;
 	}
 
 	// Common Page - BankGuru

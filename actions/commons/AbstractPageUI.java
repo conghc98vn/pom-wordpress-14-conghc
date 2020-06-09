@@ -9,6 +9,7 @@ public class AbstractPageUI {
 	public static final String DYNAMIC_PAGE_LINK = "//div[@class='wp-menu-name' and text()='%s']";
 	public static final String UPLOAD_FILE_TYPE = "//input[@type='file']";
 	public static final String MEDIA_INPROGRESS_BAR_ICON = "//div[@class='thumbnail']/div[@class='media-process-bar']";
+	public static final String ALL_UPLOAD_IMAGE = "//div[@class='thumbnail']//img";
 
 	// BankGuru
 	public static final String NEWCUSTOMER_LINK = "//li/a[text()='New Customer']";

@@ -3,6 +3,7 @@ package pageObjects.wordpress;
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPage;
+import pageUI.wordpress.MediaPageUI;
 
 public class MediaPageObject extends AbstractPage {
 	WebDriver driver;
@@ -13,12 +14,8 @@ public class MediaPageObject extends AbstractPage {
 	}
 
 	public void clickToAddNewButton() {
-		// TODO Auto-generated method stub
-		
+		waitForElementVissible(driver, MediaPageUI.ADD_NEW_BUTTON);
+		clickToElement(driver, MediaPageUI.ADD_NEW_BUTTON);
 	}
 
-	public void uploadMultipleFiles(WebDriver driver2, String ieName, String iosName, String safariName) {
-		// TODO Auto-generated method stub
-		
-	}
 }

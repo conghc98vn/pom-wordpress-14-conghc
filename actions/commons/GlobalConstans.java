@@ -11,7 +11,7 @@ public class GlobalConstans{
 	public static long SHORT_TIMEOUT = 15;
 	public static String BROWSER_LOG_FOLDER = ROOT_FOLDER + "\\browserLog";
 	public static String DOWNLOAD_FOLDER = ROOT_FOLDER + "\\downloadFiles";
-	public static String UPLOAD_FOLDER = ROOT_FOLDER + "\\uploadFiles";
+	public static String UPLOAD_FOLDER = ROOT_FOLDER + "\\uploadFiles\\";
 	
 	// NOP - COMMERCE
 	public static final String emailNOP  = "automationtest_k14@gmail.com";

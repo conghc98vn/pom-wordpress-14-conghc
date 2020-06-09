@@ -18,9 +18,9 @@ import pageObjects.wordpress.PostsPageObject;
 public class Login_09_Upload_Multiple_Files extends AbstractTest {
 	WebDriver driver;
 
-	String ieName = "ie.jpeg";
-	String iosName = "iOS.jpeg";
-	String safariName = "safari.jpg";
+	String iosName = "ios.jpg	";
+	String windowsphoneName = "windowsphone.jpg";
+	String androidName = "android.jpg";
 
 	@Parameters("browser")
 	@BeforeTest
@@ -38,18 +38,19 @@ public class Login_09_Upload_Multiple_Files extends AbstractTest {
 	@Test
 	public void TC_01_Upload_Media() {
 		mediaPage = (MediaPageObject) dashboardPage.clickToLessDynamicPageMenu(driver, "Media");
-
 		mediaPage.clickToAddNewButton();
-		mediaPage.uploadMultipleFiles(driver, ieName, iosName, safariName);
-		
+//		String a = "C:\\Users\\congh\\Desktop\\Automation\\Selenium_K14\\pom-wordpress-14-conghc\\uploadFiles\\android.jpg";
+//		String b = "C:\\Users\\congh\\Desktop\\Automation\\Selenium_K14\\pom-wordpress-14-conghc\\uploadFiles\\ios.jpg";
+//		mediaPage.sendkeyToElement(driver, AbstractPageUI.UPLOAD_FILE_TYPE, a + "\n" +b);
+		mediaPage.uploadMultipleFiles(driver, iosName);
 		// Verify file upload success
-		Assert.assertTrue(mediaPage.areFileUploadedDisplay(driver, ieName, iosName, safariName));
+		Assert.assertTrue(mediaPage.areFileUploadedDisplay(driver, iosName));
 
 	}
 
 	@AfterTest
 	public void afterClass() {
-		driver.quit();
+//		driver.quit();
 	}
 
 	LoginPageObject loginPage;
