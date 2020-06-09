@@ -2,7 +2,7 @@
 <suite name="Word Press" parallel="tests" thread-count="3">
 
    <test name="Run on FIREFOX">
-   	<parameter name="browser" value="firefox" />
+   	<parameter name="browser" value="chrome" />
     <classes>
       <class name="com.wordpress.login.Login_09_Upload_Multiple_Files"/>
     </classes>

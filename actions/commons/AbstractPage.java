@@ -442,7 +442,7 @@ public class AbstractPage {
 
 		waitForElementsInvissible(driver, AbstractPageUI.MEDIA_INPROGRESS_BAR_ICON);
 		sleepInSecond(5);
-		waitForElementsVissible(driver, AbstractPageUI.ALL_UPLOAD_IMAGE);
+//		waitForElementsVissible(driver, AbstractPageUI.ALL_UPLOAD_IMAGE);
 		elements = findElementsByXpath(driver, AbstractPageUI.ALL_UPLOAD_IMAGE);
 
 		// ArrayList chứa những giá trị này
@@ -461,12 +461,15 @@ public class AbstractPage {
 		for (String fileName : fileNames) {
 			String[] files = fileName.split("\\.");
 			fileName = files[0].toLowerCase();
-
+			System.out.println(fileName);
 			for (i = 0; i < imageValues.size(); i++) {
 				if (!imageValues.get(i).contains(fileName)) {
 					status = false;
+					if (i == imageValues.size() - 1) 
+						return status;
 				} else {
 					status = true;
+					break;
 				}
 			}
 		}

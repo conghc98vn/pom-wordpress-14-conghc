@@ -39,13 +39,9 @@ public class Login_09_Upload_Multiple_Files extends AbstractTest {
 	public void TC_01_Upload_Media() {
 		mediaPage = (MediaPageObject) dashboardPage.clickToLessDynamicPageMenu(driver, "Media");
 		mediaPage.clickToAddNewButton();
-//		String a = "C:\\Users\\congh\\Desktop\\Automation\\Selenium_K14\\pom-wordpress-14-conghc\\uploadFiles\\android.jpg";
-//		String b = "C:\\Users\\congh\\Desktop\\Automation\\Selenium_K14\\pom-wordpress-14-conghc\\uploadFiles\\ios.jpg";
-//		mediaPage.sendkeyToElement(driver, AbstractPageUI.UPLOAD_FILE_TYPE, a + "\n" +b);
-		mediaPage.uploadMultipleFiles(driver, iosName);
+		mediaPage.uploadMultipleFiles(driver, iosName, windowsphoneName, androidName);
 		// Verify file upload success
-		Assert.assertTrue(mediaPage.areFileUploadedDisplay(driver, iosName));
-
+		Assert.assertTrue(mediaPage.areFileUploadedDisplay(driver, iosName, windowsphoneName, androidName));
 	}
 
 	@AfterTest
