@@ -15,12 +15,8 @@ import pageObjects.wordpress.PageGenenratorManager;
 import pageObjects.wordpress.PagesPageObject;
 import pageObjects.wordpress.PostsPageObject;
 
-public class Login_09_Upload_Multiple_Files extends AbstractTest {
+public class Login_10_Element_Undisplayed extends AbstractTest {
 	WebDriver driver;
-
-	String iosName = "ios.jpg	";
-	String windowsphoneName = "windowsphone.jpg";
-	String androidName = "android.jpg";
 
 	@Parameters("browser")
 	@BeforeTest
@@ -35,15 +31,32 @@ public class Login_09_Upload_Multiple_Files extends AbstractTest {
 		Assert.assertTrue(dashboardPage.isHeaderTextDisplayed());
 	}
 
-	@Test
-	public void TC_01_Upload_Media() {
-		mediaPage = (MediaPageObject) dashboardPage.clickToLessDynamicPageMenu(driver, "Media");
-		mediaPage.clickToAddNewButton() ;
-		mediaPage.uploadMultipleFiles(driver, iosName, windowsphoneName, androidName);
-		// Verify file upload success
-		Assert.assertTrue(mediaPage.areFileUploadedDisplay(driver, iosName, windowsphoneName, androidName));
+//	@Test
+	public void TC_01_Element_Undisplayed_In_DOM() {
+		dashboardPage.clickToScreenOption();
+		
+		System.out.println("Start check Activity checkbox displayed: " + getDateTimeNow());
+		Assert.assertTrue(dashboardPage.isActivityCheckboxDisplayed());
+		System.out.println("End check Activity checkbox displayed: " + getDateTimeNow());
+		
+		dashboardPage.clickToScreenOption();
+		
+		System.out.println("Start check Activity checkbox not displayed: " + getDateTimeNow());
+		Assert.assertFalse(dashboardPage.isActivityCheckboxDisplayed());
+		System.out.println("End check Activity checkbox displayed: " + getDateTimeNow());
+		
+		System.out.println("Start check All Post not displayed: " + getDateTimeNow());
+		Assert.assertFalse(dashboardPage.isAllPostSubMenuDisplayed());
+		System.out.println("End check All Post not displayed: " + getDateTimeNow());
 	}
 
+	@Test
+	public void TC_02_Element_Undisplayed_Without_In_DOM() {
+		System.out.println("Start check Plans Link not displayed: " + getDateTimeNow());
+		Assert.assertFalse(dashboardPage.isPlanMenuDisplayed());
+		System.out.println("End check Plans Link not displayed: " + getDateTimeNow());
+	}
+	
 	@AfterTest
 	public void afterClass() {
 //		driver.quit();

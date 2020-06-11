@@ -8,6 +8,7 @@ import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -227,7 +228,12 @@ public class AbstractPage {
 	}
 
 	public boolean isElementDisplay(WebDriver driver, String locator) {
-		return findElementByXpath(driver, locator).isDisplayed();
+		try {
+			return findElementByXpath(driver, locator).isDisplayed();			
+		} catch (NoSuchElementException noSuchException) {
+			noSuchException.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean isElementDisplay(WebDriver driver, String locator, String... values) {
@@ -393,7 +399,7 @@ public class AbstractPage {
 		System.out.println(fullFileName);
 		sendkeyToElement(driver, AbstractPageUI.UPLOAD_FILE_TYPE, fullFileName);
 	}
-
+	
 	// Dynamic locator WordPress (Apply cho ít page 10-15-20)
 	public AbstractPage clickToLessDynamicPageMenu(WebDriver driver, String pageName) {
 		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);

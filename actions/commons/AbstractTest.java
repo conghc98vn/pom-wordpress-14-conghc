@@ -1,5 +1,6 @@
 package commons;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -38,6 +39,7 @@ public abstract class AbstractTest {
 			System.out.println("Please choose your browser !");
 		}
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().window().maximize();	
 		driver.get(GlobalConstans.WORDPRESS_URL);
 		return driver;
 	}
@@ -66,7 +68,13 @@ public abstract class AbstractTest {
 			System.out.println("Please choose your browser !");
 		}
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
 		driver.get(appURL);
 		return driver;
+	}
+	
+	public Date getDateTimeNow() {
+		Date date = new Date();
+		return date;
 	}
 }
