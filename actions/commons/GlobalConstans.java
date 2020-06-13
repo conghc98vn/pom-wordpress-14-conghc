@@ -8,7 +8,7 @@ public class GlobalConstans{
 	public static String USER_NAME = "automationeditor";
 	public static String PASSWORD = "automationfc";
 	public static long LONG_TIMEOUT = 30;
-	public static long SHORT_TIMEOUT = 15;
+	public static long SHORT_TIMEOUT = 5;
 	public static String BROWSER_LOG_FOLDER = ROOT_FOLDER + "\\browserLog";
 	public static String DOWNLOAD_FOLDER = ROOT_FOLDER + "\\downloadFiles";
 	public static String UPLOAD_FOLDER = ROOT_FOLDER + "\\uploadFiles\\";

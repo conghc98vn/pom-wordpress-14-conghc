@@ -34,17 +34,17 @@ public class Login_10_Element_Undisplayed extends AbstractTest {
 //	@Test
 	public void TC_01_Element_Undisplayed_In_DOM() {
 		dashboardPage.clickToScreenOption();
-		
+
 		System.out.println("Start check Activity checkbox displayed: " + getDateTimeNow());
 		Assert.assertTrue(dashboardPage.isActivityCheckboxDisplayed());
 		System.out.println("End check Activity checkbox displayed: " + getDateTimeNow());
-		
+
 		dashboardPage.clickToScreenOption();
-		
+
 		System.out.println("Start check Activity checkbox not displayed: " + getDateTimeNow());
 		Assert.assertFalse(dashboardPage.isActivityCheckboxDisplayed());
 		System.out.println("End check Activity checkbox displayed: " + getDateTimeNow());
-		
+
 		System.out.println("Start check All Post not displayed: " + getDateTimeNow());
 		Assert.assertFalse(dashboardPage.isAllPostSubMenuDisplayed());
 		System.out.println("End check All Post not displayed: " + getDateTimeNow());
@@ -53,13 +53,13 @@ public class Login_10_Element_Undisplayed extends AbstractTest {
 	@Test
 	public void TC_02_Element_Undisplayed_Without_In_DOM() {
 		System.out.println("Start check Plans Link not displayed: " + getDateTimeNow());
-		Assert.assertFalse(dashboardPage.isPlanMenuDisplayed());
+		Assert.assertTrue(dashboardPage.isPlanMenuUndisplayed());
 		System.out.println("End check Plans Link not displayed: " + getDateTimeNow());
 	}
-	
+
 	@AfterTest
 	public void afterClass() {
-//		driver.quit();
+		driver.quit();
 	}
 
 	LoginPageObject loginPage;

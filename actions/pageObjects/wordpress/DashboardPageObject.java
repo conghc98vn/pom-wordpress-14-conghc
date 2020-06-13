@@ -36,4 +36,8 @@ public class DashboardPageObject extends AbstractPage {
 		return isElementDisplay(driver, DashboardPageUI.PLANS_LINK);
 	}
 
+	public boolean isPlanMenuUndisplayed() {
+		return isElementUndisplayed(driver, DashboardPageUI.PLANS_LINK);
+	}
+
 }

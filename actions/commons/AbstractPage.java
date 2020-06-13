@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -229,9 +230,51 @@ public class AbstractPage {
 
 	public boolean isElementDisplay(WebDriver driver, String locator) {
 		try {
-			return findElementByXpath(driver, locator).isDisplayed();			
+			return findElementByXpath(driver, locator).isDisplayed();
 		} catch (NoSuchElementException noSuchException) {
-			noSuchException.printStackTrace();
+//			noSuchException.printStackTrace();
+			return false;
+		}
+	}
+
+	public void overrideGlobalTimeout(WebDriver driver, long timeout) {
+		driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+	}
+
+	public boolean isElementUndisplayed(WebDriver driver, String locator) {
+		overrideGlobalTimeout(driver, GlobalConstans.SHORT_TIMEOUT);
+		elements = findElementsByXpath(driver, locator);
+
+		if (elements.size() == 0) {
+			System.out.println("Element not in DOM");
+			overrideGlobalTimeout(driver, GlobalConstans.LONG_TIMEOUT);
+			return true;
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+			System.out.println("Element in DOM but not visisble/ displayed");
+			overrideGlobalTimeout(driver, GlobalConstans.LONG_TIMEOUT);
+			return true;
+		} else {
+			System.out.println("Element in DOM and visible");
+			overrideGlobalTimeout(driver, GlobalConstans.LONG_TIMEOUT);
+			return false;
+		}
+	}
+
+	public boolean isElementUndisplayed(WebDriver driver, String locator, String... values) {
+		overrideGlobalTimeout(driver, GlobalConstans.SHORT_TIMEOUT);
+		elements = findElementsByXpath(driver, castToObject(locator, values));
+
+		if (elements.size() == 0) {
+			System.out.println("Element not in DOM: ");
+			overrideGlobalTimeout(driver, GlobalConstans.LONG_TIMEOUT);
+			return true;
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+			System.out.println("Element in DOM but not visisble/ displayed");
+			overrideGlobalTimeout(driver, GlobalConstans.LONG_TIMEOUT);
+			return true;
+		} else {
+			System.out.println("Element in DOM and visible");
+			overrideGlobalTimeout(driver, GlobalConstans.LONG_TIMEOUT);
 			return false;
 		}
 	}
@@ -288,8 +331,7 @@ public class AbstractPage {
 
 	public boolean verifyTextInInnerText(WebDriver driver, String textExpected) {
 		jsExecutor = (JavascriptExecutor) driver;
-		String textActual = (String) jsExecutor
-				.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
+		String textActual = (String) jsExecutor.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
 		return textActual.equals(textExpected);
 	}
 
@@ -307,15 +349,13 @@ public class AbstractPage {
 		jsExecutor = (JavascriptExecutor) driver;
 		element = findElementByXpath(driver, locator);
 		String originalStyle = element.getAttribute("style");
-		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style",
-				"border: 5px solid red; border-style: dashed;");
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 5px solid red; border-style: dashed;");
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style",
-				originalStyle);
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
 
 	}
 
@@ -331,23 +371,17 @@ public class AbstractPage {
 
 	public void sendkeyToElementByJS(WebDriver driver, String locator, String value) {
 		jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')",
-				findElementByXpath(driver, locator));
+		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')", findElementByXpath(driver, locator));
 	}
 
 	public void removeAttributeInDOM(WebDriver driver, String locator, String attributeRemove) {
 		jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');",
-				findElementByXpath(driver, locator));
+		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');", findElementByXpath(driver, locator));
 	}
 
 	public boolean isImageLoaded(WebDriver driver, String locator) {
 		jsExecutor = (JavascriptExecutor) driver;
-		boolean status = (boolean) jsExecutor
-				.executeScript(
-						"return argument[0].complete && typeof arguments[0]"
-								+ ".naturalWith != 'undefined' && arguments[0]" + ".naturalWith > 0",
-						findElementByXpath(driver, locator));
+		boolean status = (boolean) jsExecutor.executeScript("return argument[0].complete && typeof arguments[0]" + ".naturalWith != 'undefined' && arguments[0]" + ".naturalWith > 0", findElementByXpath(driver, locator));
 		if (status) {
 			return true;
 		}
@@ -399,7 +433,7 @@ public class AbstractPage {
 		System.out.println(fullFileName);
 		sendkeyToElement(driver, AbstractPageUI.UPLOAD_FILE_TYPE, fullFileName);
 	}
-	
+
 	// Dynamic locator WordPress (Apply cho ít page 10-15-20)
 	public AbstractPage clickToLessDynamicPageMenu(WebDriver driver, String pageName) {
 		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);
@@ -471,7 +505,7 @@ public class AbstractPage {
 			for (i = 0; i < imageValues.size(); i++) {
 				if (!imageValues.get(i).contains(fileName)) {
 					status = false;
-					if (i == imageValues.size() - 1) 
+					if (i == imageValues.size() - 1)
 						return status;
 				} else {
 					status = true;
