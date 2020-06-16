@@ -28,7 +28,7 @@ public class Common_01_Register extends AbstractTest {
 		userIDValue = registerPage.getUserIDText();
 		passwordValue = registerPage.getPasswordText();
 	}
-	
+
 	@AfterTest(alwaysRun = true)
 	public void afterTest() {
 		closeBrowserAndDriver(driver);
