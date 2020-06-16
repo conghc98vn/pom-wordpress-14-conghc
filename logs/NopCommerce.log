@@ -1,0 +1,84 @@
+2020-06-16 15:11:40,695 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 01: Open Login page
+2020-06-16 15:11:40,703 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 02: Input to 'Email' textbox
+2020-06-16 15:11:41,020 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pro-condition - STEP 03: Click to 'Continue' button
+2020-06-16 15:11:41,170 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 04: Input to 'Password' textbox
+2020-06-16 15:11:41,943 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 05: Click to 'Login' button
+2020-06-16 15:11:42,047 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 06: Verify header text is displayed
+2020-06-16 15:11:45,076 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 15:11:47,242 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 02: Verify 'Activity' checkbox is displayed
+2020-06-16 15:11:47,311 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 15:11:49,440 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'Activity' checkbox is not displayed
+2020-06-16 15:11:49,493 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'All Posts' checkbox is not displayed
+2020-06-16 15:11:49,556 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Post-Condition - Close
+2020-06-16 15:17:29,484 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 01: Open Login page
+2020-06-16 15:17:29,494 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 02: Input to 'Email' textbox
+2020-06-16 15:17:29,945 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pro-condition - STEP 03: Click to 'Continue' button
+2020-06-16 15:17:30,123 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 04: Input to 'Password' textbox
+2020-06-16 15:17:31,082 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 05: Click to 'Login' button
+2020-06-16 15:17:31,234 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 06: Verify header text is displayed
+2020-06-16 15:17:34,751 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 15:17:37,015 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 02: Verify 'Activity' checkbox is displayed
+2020-06-16 15:17:37,063 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 15:17:39,197 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'Activity' checkbox is not displayed
+2020-06-16 15:17:39,244 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'All Posts' checkbox is not displayed
+2020-06-16 15:17:39,311 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Post-Condition - Close
+2020-06-16 15:27:12,038 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 01: Open Login page
+2020-06-16 15:27:12,048 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 02: Input to 'Email' textbox
+2020-06-16 15:27:12,557 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pro-condition - STEP 03: Click to 'Continue' button
+2020-06-16 15:27:12,757 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 04: Input to 'Password' textbox
+2020-06-16 15:27:13,640 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 05: Click to 'Login' button
+2020-06-16 15:27:13,789 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 06: Verify header text is displayed
+2020-06-16 15:27:17,487 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 15:27:19,785 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 02: Verify 'Activity' checkbox is displayed
+2020-06-16 15:27:19,854 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 15:27:22,087 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'Activity' checkbox is not displayed
+2020-06-16 15:27:22,126 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'All Posts' checkbox is not displayed
+2020-06-16 15:27:22,185 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Post-Condition - Close
+2020-06-16 15:37:39,404 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 01: Open Login page
+2020-06-16 15:37:39,412 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 02: Input to 'Email' textbox
+2020-06-16 15:37:39,849 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pro-condition - STEP 03: Click to 'Continue' button
+2020-06-16 15:37:40,010 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 04: Input to 'Password' textbox
+2020-06-16 15:37:40,874 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 05: Click to 'Login' button
+2020-06-16 15:37:40,998 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 06: Verify header text is displayed
+2020-06-16 15:37:44,761 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 15:37:47,009 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 02: Verify 'Activity' checkbox is displayed
+2020-06-16 15:37:47,056 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 15:37:49,172 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'Activity' checkbox is not displayed
+2020-06-16 15:37:49,213 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'All Posts' checkbox is not displayed
+2020-06-16 15:37:49,275 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Post-Condition - Close
+2020-06-16 15:51:41,172 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 01: Open Login page
+2020-06-16 15:51:41,182 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 02: Input to 'Email' textbox
+2020-06-16 15:51:41,562 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pro-condition - STEP 03: Click to 'Continue' button
+2020-06-16 15:51:41,822 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 04: Input to 'Password' textbox
+2020-06-16 15:51:42,690 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 05: Click to 'Login' button
+2020-06-16 15:51:42,819 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 06: Verify header text is displayed
+2020-06-16 15:51:46,395 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 15:51:48,645 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 02: Verify 'Activity' checkbox is displayed
+2020-06-16 15:51:48,690 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 15:51:50,927 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'Activity' checkbox is not displayed
+2020-06-16 15:51:50,969 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'All Posts' checkbox is not displayed
+2020-06-16 15:51:51,034 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Post-Condition - Close
+2020-06-16 16:03:23,967 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 01: Open Login page
+2020-06-16 16:03:23,977 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 02: Input to 'Email' textbox
+2020-06-16 16:03:24,301 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pro-condition - STEP 03: Click to 'Continue' button
+2020-06-16 16:03:24,444 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 04: Input to 'Password' textbox
+2020-06-16 16:03:25,215 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 05: Click to 'Login' button
+2020-06-16 16:03:25,317 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 06: Verify header text is displayed
+2020-06-16 16:03:28,725 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 16:03:30,895 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 02: Verify 'Activity' checkbox is displayed
+2020-06-16 16:03:30,930 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 16:03:33,078 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'Activity' checkbox is not displayed
+2020-06-16 16:03:33,128 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'All Posts' checkbox is not displayed
+2020-06-16 16:03:33,211 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Post-Condition - Close
+2020-06-16 16:09:16,180 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 01: Open Login page
+2020-06-16 16:09:16,190 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 02: Input to 'Email' textbox
+2020-06-16 16:09:16,603 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pro-condition - STEP 03: Click to 'Continue' button
+2020-06-16 16:09:16,781 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 04: Input to 'Password' textbox
+2020-06-16 16:09:17,620 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 05: Click to 'Login' button
+2020-06-16 16:09:17,787 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Pre-condition - STEP 06: Verify header text is displayed
+2020-06-16 16:09:22,188 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 16:09:24,467 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 02: Verify 'Activity' checkbox is displayed
+2020-06-16 16:09:24,809 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Click to 'Screen' option
+2020-06-16 16:09:27,179 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'Activity' checkbox is not displayed
+2020-06-16 16:09:27,212 INFO  com.wordpress.login.Login_12_Log_Report_HTML - New Customer - STEP 01: Verify 'All Posts' checkbox is not displayed
+2020-06-16 16:09:27,283 INFO  com.wordpress.login.Login_12_Log_Report_HTML - Post-Condition - Close

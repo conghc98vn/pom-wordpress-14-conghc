@@ -10,7 +10,6 @@ public class MediaPageObject extends AbstractPage {
 
 	public MediaPageObject(WebDriver driver) {
 		this.driver = driver;
-		System.out.println("Driver at Media Page = " + driver.toString());
 	}
 
 	public void clickToAddNewButton() {

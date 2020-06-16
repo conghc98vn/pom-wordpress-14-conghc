@@ -9,6 +9,5 @@ public class PostsPageObject extends AbstractPage {
 
 	public PostsPageObject(WebDriver driver) {
 		this.driver = driver;
-		System.out.println("Driver at Posts Page = " + driver.toString());
 	}
 }

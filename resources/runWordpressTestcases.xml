@@ -3,12 +3,24 @@
 	
 	<listeners>
 		<listener class-name="commons.MethodListener"/>
+		
+		<!-- Extent version 2.xx -->
+		<!-- <listener class-name="reportConfig.ExtentReportListener"/> -->
+		
+		<!-- Extent version 3.xx -->
+		<!-- <listener class-name="reportConfig.ExtentTestListener"/> -->
+		
+		<!-- Extent version 4.xx -->
+		<listener class-name="reportConfig.ExtentListener"/>
+		
+		<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
 	</listeners>
 
    <test name="Run on FIREFOX">
    	<parameter name="browser" value="chrome" />
     <classes>
-      <class name="com.wordpress.login.Login_11_Assert_Verify"/>
+      <class name="com.wordpress.login.Login_12_Log_Report_HTML"/>
     </classes>
   </test> 
   

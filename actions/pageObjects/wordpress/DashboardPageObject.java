@@ -10,7 +10,6 @@ public class DashboardPageObject extends AbstractPage {
 
 	public DashboardPageObject(WebDriver driver) {
 		this.driver = driver;
-		System.out.println("Driver at Dashboard Page = " + driver.toString());
 	}
 
 	public boolean isHeaderTextDisplayed() {

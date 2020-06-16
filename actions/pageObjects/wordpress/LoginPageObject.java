@@ -10,7 +10,6 @@ public class LoginPageObject extends AbstractPage {
 
 	public LoginPageObject(WebDriver driver) {
 		this.driver = driver;
-		System.out.println("Driver at Login Page = " + driver.toString());
 	}
 
 	public void inputToEmailTextbox(String email) {

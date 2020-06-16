@@ -9,7 +9,6 @@ public class PagesPageObject extends AbstractPage {
 
 	public PagesPageObject(WebDriver driver) {
 		this.driver = driver;
-		System.out.println("Driver at Pages Page = " + driver.toString());
 	}
 
 }

@@ -3,6 +3,8 @@ package commons;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,7 +18,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public abstract class AbstractTest {
 	WebDriver driver;
-
+	protected final Log log;
+	
+	protected AbstractTest() {
+		log = LogFactory.getLog(getClass());
+	}
+	
 	public WebDriver getBrowserDriver(String browserName) {
 		if (browserName.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
