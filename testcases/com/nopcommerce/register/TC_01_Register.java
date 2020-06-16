@@ -114,7 +114,7 @@ public class TC_01_Register extends AbstractTest {
 		registerPage.selectDayDropdown("1");
 		registerPage.selectMonthDropdown("January");
 		registerPage.selectYearDropdown("2020");
-		registerPage.inputEmailTextbox("automationfc.vn" + registerPage.randomNumber() + "@gmail.com");
+		registerPage.inputEmailTextbox("automationfc.vn" + randomNumber() + "@gmail.com");
 		registerPage.inputCompanyNameTextbox("Testing Company");
 		registerPage.clickToNewseletterOptionsButton();
 		registerPage.inputPasswordTextbox("123123123abc");

@@ -585,11 +585,6 @@ public class AbstractPage {
 //		return pageObject.NopCommerce.PageGenenratorManager.getSitemapPage(driver);
 //	}
 
-	public int randomNumber() {
-		Random rand = new Random();
-		return rand.nextInt(9999);
-	}
-
 	private Select select;
 	private Actions action;
 	private WebElement element;
