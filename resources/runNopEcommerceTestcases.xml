@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Word Press">
    <test name="Run on CHROME">
-   	<parameter name="browser" value="firefox" />
+   	<parameter name="browser" value="chrome" />
     <classes>
-      <class name="com.nopcommerce.register.TC_01_Register"/>
+      <class name="com.nopcomerce.myaccount.MyAccount_01_Update_Info"/>
     </classes>
   </test> 
-  
 </suite> 

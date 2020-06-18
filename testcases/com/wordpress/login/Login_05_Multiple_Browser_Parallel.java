@@ -1,7 +1,5 @@
 package com.wordpress.login;
 
-import java.util.Random;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -105,11 +103,6 @@ public class Login_05_Multiple_Browser_Parallel extends AbstractTest {
 	@AfterTest
 	public void afterClass() {
 		driver.quit();
-	}
-
-	public int randomNumber() {
-		Random rand = new Random();
-		return rand.nextInt(9999);
 	}
 
 }

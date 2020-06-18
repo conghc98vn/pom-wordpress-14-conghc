@@ -1,7 +1,5 @@
 package com.wordpress.login;
 
-import java.util.Random;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -29,9 +27,9 @@ public class Login_06_Browser_Factory_Pattern extends AbstractTest {
 	public void beforeClass(String browserName) {
 		driverManager = BrowserDriverFactory.getBrowserDriver(browserName);
 		driver = driverManager.getDriver();
-		
+
 		loginPage = PageGenenratorManager.getLoginPage(driver);
-		
+
 		loginPageUrl = loginPage.getLoginPageUrl();
 	}
 
@@ -54,7 +52,8 @@ public class Login_06_Browser_Factory_Pattern extends AbstractTest {
 		loginPage.openLoginPage(loginPageUrl);
 		loginPage.inputToEmailTextbox("123@123.123");
 		loginPage.clickToContinueOrLoginButton();
-		Assert.assertEquals(loginPage.getEmailOrPasswordErrorMessage(), "Please log in using your WordPress.com username instead of your email address.");
+		Assert.assertEquals(loginPage.getEmailOrPasswordErrorMessage(),
+				"Please log in using your WordPress.com username instead of your email address.");
 	}
 
 	@Test
@@ -62,7 +61,8 @@ public class Login_06_Browser_Factory_Pattern extends AbstractTest {
 		loginPage.openLoginPage(loginPageUrl);
 		loginPage.inputToEmailTextbox("abczxc123312@abc.com");
 		loginPage.clickToContinueOrLoginButton();
-		Assert.assertEquals(loginPage.getEmailOrPasswordErrorMessage(), "User does not exist. Would you like to create a new account?");
+		Assert.assertEquals(loginPage.getEmailOrPasswordErrorMessage(),
+				"User does not exist. Would you like to create a new account?");
 	}
 
 	@Test
@@ -82,7 +82,8 @@ public class Login_06_Browser_Factory_Pattern extends AbstractTest {
 		loginPage.clickToContinueOrLoginButton();
 		loginPage.inputToPasswordTextbox("123");
 		loginPage.clickToContinueOrLoginButton();
-		Assert.assertEquals(loginPage.getEmailOrPasswordErrorMessage(), "Oops, that's not the right password. Please try again!");
+		Assert.assertEquals(loginPage.getEmailOrPasswordErrorMessage(),
+				"Oops, that's not the right password. Please try again!");
 	}
 
 	@Test
@@ -92,7 +93,8 @@ public class Login_06_Browser_Factory_Pattern extends AbstractTest {
 		loginPage.clickToContinueOrLoginButton();
 		loginPage.inputToPasswordTextbox("123abc");
 		loginPage.clickToContinueOrLoginButton();
-		Assert.assertEquals(loginPage.getEmailOrPasswordErrorMessage(), "Oops, that's not the right password. Please try again!");
+		Assert.assertEquals(loginPage.getEmailOrPasswordErrorMessage(),
+				"Oops, that's not the right password. Please try again!");
 	}
 
 	@Test
@@ -109,11 +111,6 @@ public class Login_06_Browser_Factory_Pattern extends AbstractTest {
 	@AfterTest
 	public void afterClass() {
 		driver.quit();
-	}
-
-	public int randomNumber() {
-		Random rand = new Random();
-		return rand.nextInt(9999);
 	}
 
 }

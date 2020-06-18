@@ -20,10 +20,11 @@ public class AbstractPageUI {
 
 	// Nop-Commerce
 	public static final String FOOTER_MY_ACCOUNT_LINK = "//li/a[text()='My account']";
-	public static final String HEADER_WISHLIST = "//li/a[text()='Deposit']";
-	public static final String HOMEPAGE_LINK_NOP = "//li/a[text()='Deposit']";
-	public static final String SEARCH_LINK = "//li/a[text()='Deposit']";
-	public static final String SHIPPING_AND_RETURN_LINK = "//li/a[text()='Deposit']";
-	public static final String SIMEMAP_LINK = "//li/a[text()='Deposit']";
-
+	public static final String HEADER_WISHLIST = "";
+	public static final String HOMEPAGE_LINK_NOP = "";
+	public static final String SEARCH_LINK = "";
+	public static final String SHIPPING_AND_RETURN_LINK = "";
+	public static final String SIMEMAP_LINK = "";
+	public static final String LOGIN_BUTTON_NOP = "//a[@class='ico-login']";
+	public static final String MYACCOUNT_BUTTON_NOP = "//a[@class='ico-account']";
 }

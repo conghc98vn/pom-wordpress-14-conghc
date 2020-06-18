@@ -107,4 +107,9 @@ public class RegisterPageObject extends AbstractPage {
 		return getElementText(driver, RegisterPageUI.MESSAGE_REGISTER_SUCCESS_TEXT);
 	}
 
+	public void clickToCountinueButton() {
+		waitForElementVissible(driver, RegisterPageUI.COUNTINUE_BUTTON);
+		clickToElement(driver, RegisterPageUI.COUNTINUE_BUTTON);		
+	}
+
 }

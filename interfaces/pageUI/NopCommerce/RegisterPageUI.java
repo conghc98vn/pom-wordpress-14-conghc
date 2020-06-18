@@ -20,4 +20,5 @@ public class RegisterPageUI {
 	public static final String CONFIRM_PASSWORD_ERROR_MESSAGE_TEXT = "//span[@id='ConfirmPassword-error']";
 	public static final String EMAIL_EXISTS_ERROR_MESSAGE_TEXT = "//div[@class='message-error validation-summary-errors']//li";
 	public static final String MESSAGE_REGISTER_SUCCESS_TEXT = "//div[@class='result']";
+	public static final String COUNTINUE_BUTTON = "//input[@name='register-continue']";
 }

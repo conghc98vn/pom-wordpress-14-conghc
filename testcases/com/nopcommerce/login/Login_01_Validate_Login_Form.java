@@ -12,7 +12,7 @@ import pageObject.NopCommerce.LoginPageObject;
 import pageObject.NopCommerce.PageGenenratorManager;
 import pageObject.NopCommerce.RegisterPageObject;
 
-public class TC_01_Login extends AbstractTest {
+public class Login_01_Validate_Login_Form extends AbstractTest {
 	WebDriver driver;
 
 	@Parameters({ "browser" })
@@ -74,7 +74,7 @@ public class TC_01_Login extends AbstractTest {
 
 	@AfterClass
 	public void afterClass() {
-//		driver.quit();
+		driver.quit();
 	}
 
 	RegisterPageObject registerPage;

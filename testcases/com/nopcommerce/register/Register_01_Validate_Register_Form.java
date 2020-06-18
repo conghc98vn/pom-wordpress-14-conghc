@@ -12,8 +12,10 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class TC_01_Register extends AbstractTest {
+public class Register_01_Validate_Register_Form extends AbstractTest {
 	WebDriver driver;
+	public static String email = "automationfc.vn" + randomNumber() + "@gmail.com";
+	public static String password = "123456789abc";
 
 	@Parameters({ "browser" })
 	@BeforeClass
@@ -84,8 +86,7 @@ public class TC_01_Register extends AbstractTest {
 		registerPage.inputConfirmPassword("123456789abc");
 		registerPage.clickToRegisterButton();
 		Assert.assertEquals(registerPage.getPasswordErrorMessage(),
-				"Password must meet the following rules:\n" + 
-				"must have at least 6 characters");
+				"Password must meet the following rules:\n" + "must have at least 6 characters");
 	}
 
 	@Test
@@ -114,17 +115,17 @@ public class TC_01_Register extends AbstractTest {
 		registerPage.selectDayDropdown("1");
 		registerPage.selectMonthDropdown("January");
 		registerPage.selectYearDropdown("2020");
-		registerPage.inputEmailTextbox("automationfc.vn" + randomNumber() + "@gmail.com");
+		registerPage.inputEmailTextbox(email);
 		registerPage.inputCompanyNameTextbox("Testing Company");
 		registerPage.clickToNewseletterOptionsButton();
-		registerPage.inputPasswordTextbox("123123123abc");
-		registerPage.inputConfirmPassword("123123123abc");
+		registerPage.inputPasswordTextbox(password);
+		registerPage.inputConfirmPassword(password);
 		registerPage.clickToRegisterButton();
-		Assert.assertEquals(registerPage.getMessageRegisterSuccess(),
-				"Your registration completed");
+		Assert.assertEquals(registerPage.getMessageRegisterSuccess(), "Your registration completed");
+		registerPage.clickToCountinueButton();
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void afterClass() {
 		driver.quit();
 	}

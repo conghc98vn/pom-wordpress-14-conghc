@@ -150,7 +150,7 @@ public abstract class AbstractTest {
 		return checkEquals(actual, expected);
 	}
 	
-	public int randomNumber() {
+	public static int randomNumber() {
 		Random rand = new Random();
 		return rand.nextInt(9999);
 	}

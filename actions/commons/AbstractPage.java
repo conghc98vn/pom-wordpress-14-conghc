@@ -2,7 +2,6 @@ package commons;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +16,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObject.NopCommerce.FooterMyAccountPageObject;
+import pageObject.NopCommerce.HeaderWishlistPageObject;
+import pageObject.NopCommerce.LoginPageObject;
+import pageObject.NopCommerce.MyAccountPageObject;
+import pageObject.NopCommerce.SearchPageObject;
+import pageObject.NopCommerce.ShippingAndReturnPageObject;
+import pageObject.NopCommerce.SitemapPageObject;
 import pageObjects.bankGuru.DepositPageObject;
 import pageObjects.bankGuru.HomePageObject;
 import pageObjects.bankGuru.NewAccountPageObject;
@@ -547,44 +553,56 @@ public class AbstractPage {
 		return pageObjects.bankGuru.PageGenenratorManager.getWithdrawalPage(driver);
 	}
 
-//	// Common Page - NopCommerce
-//
-//	public FooterMyAccountPageObject clickToFooterMyAccountMenu(WebDriver driver) {
-//		waitForElementInvissible(driver, AbstractPageUI.FOOTER_MY_ACCOUNT_LINK);
-//		clickToElement(driver, AbstractPageUI.FOOTER_MY_ACCOUNT_LINK);
-//		return pageObject.NopCommerce.PageGenenratorManager.getFooterMyAccountPage(driver);
-//	}
-//
-//	public HeaderWishlistPageObject clickToHeaderWishlistMenu(WebDriver driver) {
-//		waitForElementInvissible(driver, AbstractPageUI.HEADER_WISHLIST);
-//		clickToElement(driver, AbstractPageUI.HEADER_WISHLIST);
-//		return pageObject.NopCommerce.PageGenenratorManager.getHeaderWishlistPage(driver);
-//	}
-//
-//	public pageObject.NopCommerce.HomePageObject clickToHomeMenuNOP(WebDriver driver) {
-//		waitForElementInvissible(driver, AbstractPageUI.HOMEPAGE_LINK_NOP);
-//		clickToElement(driver, AbstractPageUI.HOMEPAGE_LINK_NOP);
-//		return pageObject.NopCommerce.PageGenenratorManager.getHomePage(driver);
-//	}
-//
-//	public SearchPageObject clickToSearchMenu(WebDriver driver) {
-//		waitForElementInvissible(driver, AbstractPageUI.SEARCH_LINK);
-//		clickToElement(driver, AbstractPageUI.SEARCH_LINK);
-//		return pageObject.NopCommerce.PageGenenratorManager.getSearchPage(driver);
-//	}
-//
-//	public ShippingAndReturnPageObject clickToShippingAndReturnMenu(WebDriver driver) {
-//		waitForElementInvissible(driver, AbstractPageUI.SHIPPING_AND_RETURN_LINK);
-//		clickToElement(driver, AbstractPageUI.SHIPPING_AND_RETURN_LINK);
-//		return pageObject.NopCommerce.PageGenenratorManager.getShippingAndReturnPage(driver);
-//	}
-//
-//	public SitemapPageObject clickToSitemapMenu(WebDriver driver) {
-//		waitForElementInvissible(driver, AbstractPageUI.SIMEMAP_LINK);
-//		clickToElement(driver, AbstractPageUI.SIMEMAP_LINK);
-//		return pageObject.NopCommerce.PageGenenratorManager.getSitemapPage(driver);
-//	}
+	// Common Page - NopCommerce
 
+	public FooterMyAccountPageObject clickToFooterMyAccountMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.FOOTER_MY_ACCOUNT_LINK);
+		clickToElement(driver, AbstractPageUI.FOOTER_MY_ACCOUNT_LINK);
+		return pageObject.NopCommerce.PageGenenratorManager.getFooterMyAccountPage(driver);
+	}
+
+	public HeaderWishlistPageObject clickToHeaderWishlistMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.HEADER_WISHLIST);
+		clickToElement(driver, AbstractPageUI.HEADER_WISHLIST);
+		return pageObject.NopCommerce.PageGenenratorManager.getHeaderWishlistPage(driver);
+	}
+
+	public pageObject.NopCommerce.HomePageObject clickToHomeMenuNOP(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.HOMEPAGE_LINK_NOP);
+		clickToElement(driver, AbstractPageUI.HOMEPAGE_LINK_NOP);
+		return pageObject.NopCommerce.PageGenenratorManager.getHomePage(driver);
+	}
+
+	public SearchPageObject clickToSearchMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.SEARCH_LINK);
+		clickToElement(driver, AbstractPageUI.SEARCH_LINK);
+		return pageObject.NopCommerce.PageGenenratorManager.getSearchPage(driver);
+	}
+
+	public ShippingAndReturnPageObject clickToShippingAndReturnMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.SHIPPING_AND_RETURN_LINK);
+		clickToElement(driver, AbstractPageUI.SHIPPING_AND_RETURN_LINK);
+		return pageObject.NopCommerce.PageGenenratorManager.getShippingAndReturnPage(driver);
+	}
+
+	public SitemapPageObject clickToSitemapMenu(WebDriver driver) {
+		waitForElementInvissible(driver, AbstractPageUI.SIMEMAP_LINK);
+		clickToElement(driver, AbstractPageUI.SIMEMAP_LINK);
+		return pageObject.NopCommerce.PageGenenratorManager.getSitemapPage(driver);
+	}
+
+	public LoginPageObject clickToLoginButton(WebDriver driver) {
+		waitForElementsVissible(driver, AbstractPageUI.LOGIN_BUTTON_NOP);
+		clickToElement(driver, AbstractPageUI.LOGIN_BUTTON_NOP);
+		return pageObject.NopCommerce.PageGenenratorManager.getLoginPage(driver);
+	}
+	
+	public MyAccountPageObject clickToMyAccountButton(WebDriver driver) {
+		waitForElementsVissible(driver, AbstractPageUI.MYACCOUNT_BUTTON_NOP);
+		clickToElement(driver, AbstractPageUI.MYACCOUNT_BUTTON_NOP);
+		return pageObject.NopCommerce.PageGenenratorManager.getMyAccountPage(driver);
+	}
+	
 	private Select select;
 	private Actions action;
 	private WebElement element;
