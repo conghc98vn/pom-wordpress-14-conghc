@@ -41,31 +41,58 @@ public class MyAccount_01_Update_Info extends AbstractTest {
 		myAccountPage = registerPage.clickToMyAccountButton(driver);
 	}
 
-	@Test
+//	@Test
 	public void TC_01_Update_Customer_Info() {
 		myAccountPage.clickToGenderRadioButton("female");
-		myAccountPage.inputFirstNameTextbox("Automation");
-		myAccountPage.inputLastNameTextbox("FC");
+		myAccountPage.inputToFirstNameTextbox("Automation");
+		myAccountPage.inputToLastNameTextbox("FC");
 		myAccountPage.selectDayDropdown("1");
 		myAccountPage.selectMonthDropdown("January");
 		myAccountPage.selectYearDropdown("1999");
-		myAccountPage.inputEmailTextbox("automationfc.vn2@gmail.com");
-		myAccountPage.inputCompanyName("Automation FC");
+		myAccountPage.inputToEmailTextbox("automationfc.vn2@gmail.com");
+		myAccountPage.inputToCompanyNameTextbox("Automation FC");
 		myAccountPage.clickToSaveButton();
 
-		// Verify - update thêm verify ngày tháng năm
 		verifyTrue(myAccountPage.isGenderRaidoButtonSelected("female"));
-		verifyEquals((String)myAccountPage.getFirstNameText(), "Automation");
-		verifyEquals((String)myAccountPage.getLastNameText(), "FC");
-//		verifyEquals((String)myAccountPage.getDayOfBirthDayText(), "1");
-//		verifyEquals((String)myAccountPage.getDayOfBirthMonthText(), "January");
-//		verifyEquals((String)myAccountPage.getDayOfBirthYearText(), "1999");
-		verifyEquals((String)myAccountPage.getEmailText(), "automationfc.vn2@gmail.com");
-		verifyEquals((String)myAccountPage.getCompanyNameText(), "Automation FC");
+		verifyEquals((String) myAccountPage.getFirstNameText(), "Automation");
+		verifyEquals((String) myAccountPage.getLastNameText(), "FC");
+		verifyEquals((String) myAccountPage.getDayOfBirthDayText(), "1");
+		verifyEquals((String) myAccountPage.getDayOfBirthMonthText(), "January");
+		verifyEquals((String) myAccountPage.getDayOfBirthYearText(), "1999");
+		verifyEquals((String) myAccountPage.getEmailText(), "automationfc.vn2@gmail.com");
+		verifyEquals((String) myAccountPage.getCompanyNameText(), "Automation FC");
+		myAccountPage.sleepInSecond(3);
 	}
 
-//	@Test
+	@Test
 	public void TC_02_Add_New_Address() {
+		myAccountPage.clickToAddressButton();
+		myAccountPage.clickToAddNewButton();
+		myAccountPage.inputToFirstNameAdressTextbox("Automation");
+		myAccountPage.inputToLastNameAdressTextbox("FC");
+		myAccountPage.inputToEmailAddressTextbox("automationfc.vn@gmail.com");
+		myAccountPage.inputToCompanyAddressTextbox("Automation FC");
+		myAccountPage.selectCountryAddressDropdown("Viet Nam");
+		myAccountPage.selectStateProvinceAddressDropdown("Other");
+		myAccountPage.inputToCityAddressTextbox("Da Nang");
+		myAccountPage.inputToAddress1Textbox("123/04 Le Lai");
+		myAccountPage.inputToAddress2Textbox("234/05 Hai Phong");
+		myAccountPage.inputToZipPostalCodeAddressTextbox("550000");
+		myAccountPage.inputToPhoneNumberAddressTextbox("0123456789");
+		myAccountPage.inputToFaxNumberAddressTextbox("0987654321");
+		myAccountPage.clickToSaveAddressButton();
+
+
+		verifyTrue(myAccountPage.getFullNameAddressText().contains("Automation FC"));
+		verifyTrue(myAccountPage.getEmailAddressText().contains("automationfc.vn@gmail.com"));
+		verifyTrue(myAccountPage.getCompanyAddressText().contains("Automation FC")); 
+		verifyTrue(myAccountPage.getCountryAddressText().contains("Viet Nam")); 
+		verifyTrue(myAccountPage.getCityAddressText().contains("Da Nang"));
+		verifyTrue(myAccountPage.getAddress1Text().contains("123/04 Le Lai")); 
+		verifyTrue(myAccountPage.getAddress2Text().contains("234/05 Hai Phong")); 
+		verifyTrue(myAccountPage.getZipPostalCodeAddressText().contains("550000")); 
+		verifyTrue(myAccountPage.getPhoneNumberAddressText().contains("0123456789")); 
+		verifyTrue(myAccountPage.getFaxNumberAddressText().contains("0987654321")); 
 	}
 
 //	@Test

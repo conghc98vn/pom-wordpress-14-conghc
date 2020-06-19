@@ -170,13 +170,17 @@ public class AbstractPage {
 		return findElementByXpath(driver, locator).getText();
 	}
 
+	public String getElementText(WebDriver driver, String locator, String... values) {
+		return findElementByXpath(driver, castToObject(locator, values)).getText();
+	}
+
 	public String getElementAttribute(WebDriver driver, String locator, String attributeName) {
 		return findElementByXpath(driver, locator).getAttribute(attributeName);
 	}
 
 	public void selectValueInDropdown(WebDriver driver, String locator, String value) {
 		select = new Select(findElementByXpath(driver, locator));
-		select.selectByVisibleText(value);
+		select.selectByVisibleText(value); 
 	}
 
 	public String getSelectItemInDropdown(WebDriver driver, String locator) {
@@ -295,6 +299,10 @@ public class AbstractPage {
 
 	public boolean isElementSelected(WebDriver driver, String locator) {
 		return findElementByXpath(driver, locator).isSelected();
+	}
+
+	public boolean isElementSelected(WebDriver driver, String locator, String... values) {
+		return findElementByXpath(driver, castToObject(locator, values)).isSelected();
 	}
 
 	public void switchToFrameOrIframe(WebDriver driver, String locator) {
@@ -596,13 +604,13 @@ public class AbstractPage {
 		clickToElement(driver, AbstractPageUI.LOGIN_BUTTON_NOP);
 		return pageObject.NopCommerce.PageGenenratorManager.getLoginPage(driver);
 	}
-	
+
 	public MyAccountPageObject clickToMyAccountButton(WebDriver driver) {
 		waitForElementsVissible(driver, AbstractPageUI.MYACCOUNT_BUTTON_NOP);
 		clickToElement(driver, AbstractPageUI.MYACCOUNT_BUTTON_NOP);
 		return pageObject.NopCommerce.PageGenenratorManager.getMyAccountPage(driver);
 	}
-	
+
 	private Select select;
 	private Actions action;
 	private WebElement element;
