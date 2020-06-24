@@ -82,17 +82,16 @@ public class MyAccount_01_Update_Info extends AbstractTest {
 		myAccountPage.inputToFaxNumberAddressTextbox("0987654321");
 		myAccountPage.clickToSaveAddressButton();
 
-
 		verifyTrue(myAccountPage.getFullNameAddressText().contains("Automation FC"));
 		verifyTrue(myAccountPage.getEmailAddressText().contains("automationfc.vn@gmail.com"));
-		verifyTrue(myAccountPage.getCompanyAddressText().contains("Automation FC")); 
-		verifyTrue(myAccountPage.getCountryAddressText().contains("Viet Nam")); 
+		verifyTrue(myAccountPage.getCompanyAddressText().contains("Automation FC"));
+		verifyTrue(myAccountPage.getCountryAddressText().contains("Viet Nam"));
 		verifyTrue(myAccountPage.getCityAddressText().contains("Da Nang"));
-		verifyTrue(myAccountPage.getAddress1Text().contains("123/04 Le Lai")); 
-		verifyTrue(myAccountPage.getAddress2Text().contains("234/05 Hai Phong")); 
-		verifyTrue(myAccountPage.getZipPostalCodeAddressText().contains("550000")); 
-		verifyTrue(myAccountPage.getPhoneNumberAddressText().contains("0123456789")); 
-		verifyTrue(myAccountPage.getFaxNumberAddressText().contains("0987654321")); 
+		verifyTrue(myAccountPage.getAddress1Text().contains("123/04 Le Lai"));
+		verifyTrue(myAccountPage.getAddress2Text().contains("234/05 Hai Phong"));
+		verifyTrue(myAccountPage.getZipPostalCodeAddressText().contains("550000"));
+		verifyTrue(myAccountPage.getPhoneNumberAddressText().contains("0123456789"));
+		verifyTrue(myAccountPage.getFaxNumberAddressText().contains("0987654321"));
 	}
 
 //	@Test
