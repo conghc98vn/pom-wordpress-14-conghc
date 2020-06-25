@@ -16,9 +16,10 @@ public class LoginPageObject extends AbstractPage {
 		return getCurrentURL(driver);
 	}
 
-	public void clickToHereLink() {
+	public RegisterPageObject clickToHereLink() {
 		waitForElementClickable(driver, LoginPageUI.HERE_LINK);
 		clickToElement(driver, LoginPageUI.HERE_LINK);
+		return PageGenenratorManager.getRegisterPage(driver);
 	}
 
 	public void inputToUserIDTextbox(String userIDValue) {
@@ -31,9 +32,10 @@ public class LoginPageObject extends AbstractPage {
 		sendkeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, passwordValue);
 	}
 
-	public void clickToLoginButton() {
+	public HomePageObject clickToLoginButton() {
 		waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+		return PageGenenratorManager.getHomePage(driver);
 	}
 
 }
