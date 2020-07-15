@@ -29,4 +29,8 @@ public class PageGenenratorManager {
 	public static WithdrawalPageObject getWithdrawalPage(WebDriver driver) {
 		return new WithdrawalPageObject(driver);
 	}
+	
+	public static EditCusomterPageObject getEditCustomerPage(WebDriver driver) {
+		return new EditCusomterPageObject(driver);
+	}
 }

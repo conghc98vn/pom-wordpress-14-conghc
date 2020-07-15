@@ -32,6 +32,7 @@ import pageObjects.wordpress.MediaPageObject;
 import pageObjects.wordpress.PageGenenratorManager;
 import pageObjects.wordpress.PagesPageObject;
 import pageObjects.wordpress.PostsPageObject;
+import pageUI.bankGuru.AbstractPageBankGuruUI;
 
 //public abstract class AbstractPage {
 public class AbstractPage {
@@ -560,7 +561,42 @@ public class AbstractPage {
 		clickToElement(driver, AbstractPageUI.WITHDRAWAL_LINK);
 		return pageObjects.bankGuru.PageGenenratorManager.getWithdrawalPage(driver);
 	}
+	
+	/*BankGuru Dynamic Page Component*/
+	public void inputToDynamicTextbox(WebDriver driver, String nameAttributeValues, String inputValues) {
+		waitForElementVissible(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTBOX, nameAttributeValues);
+		sendkeyToElement(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTBOX, inputValues, nameAttributeValues);
+	}
+	
+	public void inputToDynamicTextArea(WebDriver driver, String nameAttributeValues, String inputValues) {
+		waitForElementVissible(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTAREA, nameAttributeValues);
+		sendkeyToElement(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTAREA, inputValues, nameAttributeValues);
+	}
+	
+	public void clickToDynamicButton(WebDriver driver, String buttonValue) {
+		waitForElementsClickable(driver, AbstractPageBankGuruUI.DYNAMIC_BUTTON, buttonValue);
+		clickToElement(driver, AbstractPageBankGuruUI.DYNAMIC_BUTTON, buttonValue);
+	}
+	
+	public void clickToDynamicRadioButton(WebDriver driver, String radioButtonValue) {
+		waitForElementsClickable(driver, AbstractPageBankGuruUI.DYNAMIC_RADIO_BUTTON, radioButtonValue);
+		clickToElement(driver, AbstractPageBankGuruUI.DYNAMIC_RADIO_BUTTON, radioButtonValue);
+	}
+	
+	public void clickToDynamicLink(WebDriver driver, String linkPageName) {
+		waitForElementsClickable(driver, AbstractPageBankGuruUI.DYNAMIC_LINK, linkPageName);
+		clickToElement(driver, AbstractPageBankGuruUI.DYNAMIC_LINK, linkPageName);
+	}
+	
+	public boolean isDynamicMessageDisplayed(WebDriver driver, String messageText) {
+		waitForElementsClickable(driver, AbstractPageBankGuruUI.DYNAMIC_MESSAGE, messageText);
+		return isElementDisplay(driver, AbstractPageBankGuruUI.DYNAMIC_MESSAGE, messageText);
+	}
 
+	public String getDynamicValueByColumnName(WebDriver driver, String columnName) {
+		waitForElementsClickable(driver, AbstractPageBankGuruUI.DYNAMIC_VALUE_BY_COLUMN_NAME, columnName);
+		return getElementText(driver, AbstractPageBankGuruUI.DYNAMIC_VALUE_BY_COLUMN_NAME, columnName);
+	}
 	// Common Page - NopCommerce
 
 	public FooterMyAccountPageObject clickToFooterMyAccountMenu(WebDriver driver) {
