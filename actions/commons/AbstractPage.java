@@ -181,7 +181,7 @@ public class AbstractPage {
 
 	public void selectValueInDropdown(WebDriver driver, String locator, String value) {
 		select = new Select(findElementByXpath(driver, locator));
-		select.selectByVisibleText(value); 
+		select.selectByVisibleText(value);
 	}
 
 	public String getSelectItemInDropdown(WebDriver driver, String locator) {
@@ -346,7 +346,8 @@ public class AbstractPage {
 
 	public boolean verifyTextInInnerText(WebDriver driver, String textExpected) {
 		jsExecutor = (JavascriptExecutor) driver;
-		String textActual = (String) jsExecutor.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
+		String textActual = (String) jsExecutor
+				.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
 		return textActual.equals(textExpected);
 	}
 
@@ -364,13 +365,15 @@ public class AbstractPage {
 		jsExecutor = (JavascriptExecutor) driver;
 		element = findElementByXpath(driver, locator);
 		String originalStyle = element.getAttribute("style");
-		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 5px solid red; border-style: dashed;");
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style",
+				"border: 5px solid red; border-style: dashed;");
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style",
+				originalStyle);
 
 	}
 
@@ -386,17 +389,29 @@ public class AbstractPage {
 
 	public void sendkeyToElementByJS(WebDriver driver, String locator, String value) {
 		jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')", findElementByXpath(driver, locator));
+		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')",
+				findElementByXpath(driver, locator));
 	}
 
 	public void removeAttributeInDOM(WebDriver driver, String locator, String attributeRemove) {
 		jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');", findElementByXpath(driver, locator));
+		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');",
+				findElementByXpath(driver, locator));
+	}
+
+	public void removeAttributeInDOM(WebDriver driver, String locator, String attributeRemove, String... values) {
+		jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');",
+				findElementByXpath(driver, castToObject(locator, values)));
 	}
 
 	public boolean isImageLoaded(WebDriver driver, String locator) {
 		jsExecutor = (JavascriptExecutor) driver;
-		boolean status = (boolean) jsExecutor.executeScript("return argument[0].complete && typeof arguments[0]" + ".naturalWith != 'undefined' && arguments[0]" + ".naturalWith > 0", findElementByXpath(driver, locator));
+		boolean status = (boolean) jsExecutor
+				.executeScript(
+						"return argument[0].complete && typeof arguments[0]"
+								+ ".naturalWith != 'undefined' && arguments[0]" + ".naturalWith > 0",
+						findElementByXpath(driver, locator));
 		if (status) {
 			return true;
 		}
@@ -561,33 +576,37 @@ public class AbstractPage {
 		clickToElement(driver, AbstractPageUI.WITHDRAWAL_LINK);
 		return pageObjects.bankGuru.PageGenenratorManager.getWithdrawalPage(driver);
 	}
-	
-	/*BankGuru Dynamic Page Component*/
-	public void inputToDynamicTextbox(WebDriver driver, String nameAttributeValues, String inputValues) {
-		waitForElementVissible(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTBOX, nameAttributeValues);
-		sendkeyToElement(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTBOX, inputValues, nameAttributeValues);
+
+	/* BankGuru Dynamic Page Component */
+	public void inputToDynamicTextbox(WebDriver driver, String nameAttributeValue, String inputValues) {
+		waitForElementVissible(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTBOX, nameAttributeValue);
+		if(nameAttributeValue.equals("dob")) {
+			removeAttributeInDOM(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTBOX, "type", nameAttributeValue);
+			sleepInSecond(2);
+		}
+		sendkeyToElement(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTBOX, inputValues, nameAttributeValue);
 	}
-	
+
 	public void inputToDynamicTextArea(WebDriver driver, String nameAttributeValues, String inputValues) {
 		waitForElementVissible(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTAREA, nameAttributeValues);
 		sendkeyToElement(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTAREA, inputValues, nameAttributeValues);
 	}
-	
+
 	public void clickToDynamicButton(WebDriver driver, String buttonValue) {
 		waitForElementsClickable(driver, AbstractPageBankGuruUI.DYNAMIC_BUTTON, buttonValue);
 		clickToElement(driver, AbstractPageBankGuruUI.DYNAMIC_BUTTON, buttonValue);
 	}
-	
+
 	public void clickToDynamicRadioButton(WebDriver driver, String radioButtonValue) {
 		waitForElementsClickable(driver, AbstractPageBankGuruUI.DYNAMIC_RADIO_BUTTON, radioButtonValue);
 		clickToElement(driver, AbstractPageBankGuruUI.DYNAMIC_RADIO_BUTTON, radioButtonValue);
 	}
-	
+
 	public void clickToDynamicLink(WebDriver driver, String linkPageName) {
 		waitForElementsClickable(driver, AbstractPageBankGuruUI.DYNAMIC_LINK, linkPageName);
 		clickToElement(driver, AbstractPageBankGuruUI.DYNAMIC_LINK, linkPageName);
 	}
-	
+
 	public boolean isDynamicMessageDisplayed(WebDriver driver, String messageText) {
 		waitForElementsClickable(driver, AbstractPageBankGuruUI.DYNAMIC_MESSAGE, messageText);
 		return isElementDisplay(driver, AbstractPageBankGuruUI.DYNAMIC_MESSAGE, messageText);
