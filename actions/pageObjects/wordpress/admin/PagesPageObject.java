@@ -1,4 +1,4 @@
-package pageObjects.wordpress;
+package pageObjects.wordpress.admin;
 
 import org.openqa.selenium.WebDriver;
 

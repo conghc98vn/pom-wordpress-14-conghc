@@ -43,7 +43,7 @@
 		<appender-ref ref="testng" />
 	</category>
 
-	<category name="com.nopcommerce.login">
+	<category name="com.nopcommerce.posts">
 		<priority value="all" />
 		<appender-ref ref="console" />
 		<appender-ref ref="logfile" />

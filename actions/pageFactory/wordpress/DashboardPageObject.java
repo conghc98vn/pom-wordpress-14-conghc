@@ -3,7 +3,7 @@ package pageFactory.wordpress;
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPage;
-import pageUI.wordpress.DashboardPageUI;
+import pageUI.wordpress.admin.DashboardPageUI;
 
 public class DashboardPageObject extends AbstractPage {
 	WebDriver driver;

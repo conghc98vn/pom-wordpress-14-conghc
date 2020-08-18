@@ -8,12 +8,12 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.AbstractTest;
-import pageObjects.wordpress.DashboardPageObject;
-import pageObjects.wordpress.LoginPageObject;
-import pageObjects.wordpress.MediaPageObject;
-import pageObjects.wordpress.PageGenenratorManager;
-import pageObjects.wordpress.PagesPageObject;
-import pageObjects.wordpress.PostsPageObject;
+import commons.PageGenenratorManagerWordPress;
+import pageObjects.wordpress.admin.DashboardPageObject;
+import pageObjects.wordpress.admin.LoginPageObject;
+import pageObjects.wordpress.admin.MediaPageObject;
+import pageObjects.wordpress.admin.PagesPageObject;
+import pageObjects.wordpress.admin.PostsPageObject;
 
 public class Login_07_WebDriver_LifeCycle extends AbstractTest {
 	WebDriver driver;
@@ -22,7 +22,7 @@ public class Login_07_WebDriver_LifeCycle extends AbstractTest {
 	@BeforeTest
 	public void beforeClass(String browserName) {
 		driver = getBrowserDriver(browserName);
-		loginPage = PageGenenratorManager.getLoginPage(driver);
+		loginPage = PageGenenratorManagerWordPress.getLoginAdminPage(driver);
 	}
 
 	@Test

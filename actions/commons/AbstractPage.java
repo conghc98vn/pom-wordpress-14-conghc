@@ -28,10 +28,11 @@ import pageObjects.bankGuru.HomePageObject;
 import pageObjects.bankGuru.NewAccountPageObject;
 import pageObjects.bankGuru.NewCustomerPageObject;
 import pageObjects.bankGuru.WithdrawalPageObject;
-import pageObjects.wordpress.MediaPageObject;
-import pageObjects.wordpress.PageGenenratorManager;
-import pageObjects.wordpress.PagesPageObject;
-import pageObjects.wordpress.PostsPageObject;
+import pageObjects.wordpress.admin.DashboardPageObject;
+import pageObjects.wordpress.admin.MediaPageObject;
+import pageObjects.wordpress.admin.PagesPageObject;
+import pageObjects.wordpress.admin.PostsPageObject;
+import pageObjects.wordpress.user.SearchResultPageObject;
 import pageUI.bankGuru.AbstractPageBankGuruUI;
 
 //public abstract class AbstractPage {
@@ -386,6 +387,11 @@ public class AbstractPage {
 		jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", findElementByXpath(driver, locator));
 	}
+	
+	public void scrollToElement(WebDriver driver, String locator, String... values) {
+		jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", findElementByXpath(driver, castToObject(locator, values)));
+	}
 
 	public void sendkeyToElementByJS(WebDriver driver, String locator, String value) {
 		jsExecutor = (JavascriptExecutor) driver;
@@ -465,23 +471,23 @@ public class AbstractPage {
 	}
 
 	// Dynamic locator WordPress (Apply cho ít page 10-15-20)
-	public AbstractPage clickToLessDynamicPageMenu(WebDriver driver, String pageName) {
+	public AbstractPage openMenuPageByPageName(WebDriver driver, String pageName) {
 		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);
 		clickToElement(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);
 
 		if (pageName.equals("Posts")) {
-			return PageGenenratorManager.getPostsPage(driver);
+			return PageGenenratorManagerWordPress.getPostsAdminPage(driver);
 		} else if (pageName.equals("Pages")) {
-			return PageGenenratorManager.getPagesPage(driver);
+			return PageGenenratorManagerWordPress.getPagesAdminPage(driver);
 		} else if (pageName.equals("Media")) {
-			return PageGenenratorManager.getMediaPage(driver);
+			return PageGenenratorManagerWordPress.getMediaAdminPage(driver);
 		} else {
-			return PageGenenratorManager.getDashboardPage(driver);
+			return PageGenenratorManagerWordPress.getDashboardAdminPage(driver);
 		}
 	}
 
 	// Dynamic locator WordPress (Apply cho quá nhiều page)
-	public void clickToMoreDynamicPageMenu(WebDriver driver, String pageName) {
+	public void openMenuPageByName(WebDriver driver, String pageName) {
 		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);
 		clickToElement(driver, AbstractPageUI.DYNAMIC_PAGE_LINK, pageName);
 	}
@@ -491,19 +497,19 @@ public class AbstractPage {
 	public MediaPageObject clickToMediaMenu(WebDriver driver) {
 		waitForElementVissible(driver, AbstractPageUI.MEDIA_LINK);
 		clickToElement(driver, AbstractPageUI.MEDIA_LINK);
-		return PageGenenratorManager.getMediaPage(driver);
+		return PageGenenratorManagerWordPress.getMediaAdminPage(driver);
 	}
 
 	public PagesPageObject clickToPagesMenu(WebDriver driver) {
 		waitForElementInvissible(driver, AbstractPageUI.PAGES_LINK);
 		clickToElement(driver, AbstractPageUI.PAGES_LINK);
-		return PageGenenratorManager.getPagesPage(driver);
+		return PageGenenratorManagerWordPress.getPagesAdminPage(driver);
 	}
 
 	public PostsPageObject clickToPostsMenu(WebDriver driver) {
 		waitForElementVissible(driver, AbstractPageUI.POSTS_LINK);
 		clickToElement(driver, AbstractPageUI.POSTS_LINK);
-		return PageGenenratorManager.getPostsPage(driver);
+		return PageGenenratorManagerWordPress.getPostsAdminPage(driver);
 	}
 
 	public boolean areFileUploadedDisplay(WebDriver driver, String... fileNames) {
@@ -580,7 +586,7 @@ public class AbstractPage {
 	/* BankGuru Dynamic Page Component */
 	public void inputToDynamicTextbox(WebDriver driver, String nameAttributeValue, String inputValues) {
 		waitForElementVissible(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTBOX, nameAttributeValue);
-		if(nameAttributeValue.equals("dob")) {
+		if (nameAttributeValue.equals("dob")) {
 			removeAttributeInDOM(driver, AbstractPageBankGuruUI.DYNAMIC_TEXTBOX, "type", nameAttributeValue);
 			sleepInSecond(2);
 		}
@@ -664,6 +670,25 @@ public class AbstractPage {
 		waitForElementsVissible(driver, AbstractPageUI.MYACCOUNT_BUTTON_NOP);
 		clickToElement(driver, AbstractPageUI.MYACCOUNT_BUTTON_NOP);
 		return pageObject.NopCommerce.PageGenenratorManager.getMyAccountPage(driver);
+	}
+
+	public pageObjects.wordpress.user.HomePageObject openEndUserPage(WebDriver driver) {
+		openUrl(driver, GlobalConstans.USER_WORDPRESS_URL);
+		return PageGenenratorManagerWordPress.getHomeUserPage(driver);
+	}
+
+	public DashboardPageObject openAdminLoggedPage(WebDriver driver) {
+		openUrl(driver, GlobalConstans.ADMIN_WORDPRESS_URL);
+		return PageGenenratorManagerWordPress.getDashboardAdminPage(driver);
+	}
+
+	public SearchResultPageObject inputToSearchTextboxAtEndUserPage(WebDriver driver, String value) {
+
+		return PageGenenratorManagerWordPress.getSearchResultUserPage(driver);
+	}
+
+	public boolean isSuccessMessageDisplayWithTextValue(String value) {
+		return false;
 	}
 
 	private Select select;

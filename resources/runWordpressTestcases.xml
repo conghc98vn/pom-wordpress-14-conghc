@@ -20,7 +20,7 @@
    <test name="Run on FIREFOX">
    	<parameter name="browser" value="chrome" />
     <classes>
-      <class name="com.wordpress.login.Login_12_Log_Report_HTML"/>
+      <class name="com.wordpress.posts.Admin_01_Create_View_Edit_Delete"/>
     </classes>
   </test> 
   

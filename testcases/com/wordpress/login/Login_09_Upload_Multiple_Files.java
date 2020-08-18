@@ -8,12 +8,12 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.AbstractTest;
-import pageObjects.wordpress.DashboardPageObject;
-import pageObjects.wordpress.LoginPageObject;
-import pageObjects.wordpress.MediaPageObject;
-import pageObjects.wordpress.PageGenenratorManager;
-import pageObjects.wordpress.PagesPageObject;
-import pageObjects.wordpress.PostsPageObject;
+import commons.PageGenenratorManagerWordPress;
+import pageObjects.wordpress.admin.DashboardPageObject;
+import pageObjects.wordpress.admin.LoginPageObject;
+import pageObjects.wordpress.admin.MediaPageObject;
+import pageObjects.wordpress.admin.PagesPageObject;
+import pageObjects.wordpress.admin.PostsPageObject;
 
 public class Login_09_Upload_Multiple_Files extends AbstractTest {
 	WebDriver driver;
@@ -26,7 +26,7 @@ public class Login_09_Upload_Multiple_Files extends AbstractTest {
 	@BeforeTest
 	public void beforeClass(String browserName) {
 		driver = getBrowserDriver(browserName);
-		loginPage = PageGenenratorManager.getLoginPage(driver);
+		loginPage = PageGenenratorManagerWordPress.getLoginAdminPage(driver);
 
 		loginPage.inputToEmailTextbox("automationeditor");
 		loginPage.clickToContinueOrLoginButton();
@@ -37,7 +37,7 @@ public class Login_09_Upload_Multiple_Files extends AbstractTest {
 
 	@Test
 	public void TC_01_Upload_Media() {
-		mediaPage = (MediaPageObject) dashboardPage.clickToLessDynamicPageMenu(driver, "Media");
+		mediaPage = (MediaPageObject) dashboardPage.openMenuPageByPageName(driver, "Media");
 		mediaPage.clickToAddNewButton() ;
 		mediaPage.uploadMultipleFiles(driver, iosName, windowsphoneName, androidName);
 		// Verify file upload success

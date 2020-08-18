@@ -8,12 +8,13 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.AbstractTest;
-import pageObjects.wordpress.DashboardPageObject;
-import pageObjects.wordpress.LoginPageObject;
-import pageObjects.wordpress.MediaPageObject;
-import pageObjects.wordpress.PageGenenratorManager;
-import pageObjects.wordpress.PagesPageObject;
-import pageObjects.wordpress.PostsPageObject;
+import commons.GlobalConstans;
+import commons.PageGenenratorManagerWordPress;
+import pageObjects.wordpress.admin.DashboardPageObject;
+import pageObjects.wordpress.admin.LoginPageObject;
+import pageObjects.wordpress.admin.MediaPageObject;
+import pageObjects.wordpress.admin.PagesPageObject;
+import pageObjects.wordpress.admin.PostsPageObject;
 
 public class Login_12_Log_Report_HTML extends AbstractTest {
 	WebDriver driver;
@@ -24,16 +25,16 @@ public class Login_12_Log_Report_HTML extends AbstractTest {
 		driver = getBrowserDriver(browserName);
 
 		log.info("Pre-condition - STEP 01: Open Login page");
-		loginPage = PageGenenratorManager.getLoginPage(driver);
+		loginPage = PageGenenratorManagerWordPress.getLoginAdminPage(driver);
 
 		log.info("Pre-condition - STEP 02: Input to 'Email' textbox");
-		loginPage.inputToEmailTextbox("automationeditor");
+		loginPage.inputToEmailTextbox(GlobalConstans.USER_NAME);
 
 		log.info("Pro-condition - STEP 03: Click to 'Continue' button");
 		loginPage.clickToContinueOrLoginButton();
 
 		log.info("Pre-condition - STEP 04: Input to 'Password' textbox");
-		loginPage.inputToPasswordTextbox("automationfc");
+		loginPage.inputToPasswordTextbox(GlobalConstans.PASSWORD);
 
 		log.info("Pre-condition - STEP 05: Click to 'Login' button");
 		dashboardPage = loginPage.clickToContinueOrLoginButton();
@@ -63,7 +64,7 @@ public class Login_12_Log_Report_HTML extends AbstractTest {
 	@AfterTest
 	public void afterClass() {
 		log.info("Post-Condition - Close browser");
-		driver.quit();
+		closeBrowserAndDriver(driver);
 	}
 
 	LoginPageObject loginPage;

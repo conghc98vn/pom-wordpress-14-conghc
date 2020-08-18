@@ -8,12 +8,12 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.AbstractTest;
-import pageObjects.wordpress.DashboardPageObject;
-import pageObjects.wordpress.LoginPageObject;
-import pageObjects.wordpress.MediaPageObject;
-import pageObjects.wordpress.PageGenenratorManager;
-import pageObjects.wordpress.PagesPageObject;
-import pageObjects.wordpress.PostsPageObject;
+import commons.PageGenenratorManagerWordPress;
+import pageObjects.wordpress.admin.DashboardPageObject;
+import pageObjects.wordpress.admin.LoginPageObject;
+import pageObjects.wordpress.admin.MediaPageObject;
+import pageObjects.wordpress.admin.PagesPageObject;
+import pageObjects.wordpress.admin.PostsPageObject;
 
 public class Login_08_Dynamic_Locator_Rest_Param extends AbstractTest {
 	WebDriver driver;
@@ -22,7 +22,7 @@ public class Login_08_Dynamic_Locator_Rest_Param extends AbstractTest {
 	@BeforeTest
 	public void beforeClass(String browserName) {
 		driver = getBrowserDriver(browserName);
-		loginPage = PageGenenratorManager.getLoginPage(driver);
+		loginPage = PageGenenratorManagerWordPress.getLoginAdminPage(driver);
 
 		loginPage.inputToEmailTextbox("automationeditor");
 		loginPage.clickToContinueOrLoginButton();
@@ -33,40 +33,40 @@ public class Login_08_Dynamic_Locator_Rest_Param extends AbstractTest {
 
 	@Test
 	public void TC_01_Less_Page() {
-		postsPage = (PostsPageObject) dashboardPage.clickToLessDynamicPageMenu(driver, "Posts");
+		postsPage = (PostsPageObject) dashboardPage.openMenuPageByPageName(driver, "Posts");
 
-		pagesPage = (PagesPageObject) postsPage.clickToLessDynamicPageMenu(driver, "Pages");
+		pagesPage = (PagesPageObject) postsPage.openMenuPageByPageName(driver, "Pages");
 
-		mediaPage = (MediaPageObject) pagesPage.clickToLessDynamicPageMenu(driver, "Media");
+		mediaPage = (MediaPageObject) pagesPage.openMenuPageByPageName(driver, "Media");
 
-		postsPage = (PostsPageObject) mediaPage.clickToLessDynamicPageMenu(driver, "Posts");
+		postsPage = (PostsPageObject) mediaPage.openMenuPageByPageName(driver, "Posts");
 
-		pagesPage = (PagesPageObject) postsPage.clickToLessDynamicPageMenu(driver, "Pages");
+		pagesPage = (PagesPageObject) postsPage.openMenuPageByPageName(driver, "Pages");
 
-		postsPage = (PostsPageObject) pagesPage.clickToLessDynamicPageMenu(driver, "Posts");
+		postsPage = (PostsPageObject) pagesPage.openMenuPageByPageName(driver, "Posts");
 
-		mediaPage = (MediaPageObject) postsPage.clickToLessDynamicPageMenu(driver, "Media");
+		mediaPage = (MediaPageObject) postsPage.openMenuPageByPageName(driver, "Media");
 
-		dashboardPage = (DashboardPageObject) mediaPage.clickToLessDynamicPageMenu(driver, "Dashboard");
+		dashboardPage = (DashboardPageObject) mediaPage.openMenuPageByPageName(driver, "Dashboard");
 	}
 	
 
 	@Test
 	public void TC_02_More_Page() {
-		mediaPage.clickToLessDynamicPageMenu(driver, "Posts");
-		postsPage = PageGenenratorManager.getPostsPage(driver);
+		mediaPage.openMenuPageByPageName(driver, "Posts");
+		postsPage = PageGenenratorManagerWordPress.getPostsAdminPage(driver);
 
-		postsPage.clickToLessDynamicPageMenu(driver, "Pages");
-		pagesPage = PageGenenratorManager.getPagesPage(driver);
+		postsPage.openMenuPageByPageName(driver, "Pages");
+		pagesPage = PageGenenratorManagerWordPress.getPagesAdminPage(driver);
 
-		pagesPage.clickToLessDynamicPageMenu(driver, "Posts");
-		postsPage = PageGenenratorManager.getPostsPage(driver);
+		pagesPage.openMenuPageByPageName(driver, "Posts");
+		postsPage = PageGenenratorManagerWordPress.getPostsAdminPage(driver);
 
-		postsPage.clickToLessDynamicPageMenu(driver, "Media");
-		mediaPage = PageGenenratorManager.getMediaPage(driver);
+		postsPage.openMenuPageByPageName(driver, "Media");
+		mediaPage = PageGenenratorManagerWordPress.getMediaAdminPage(driver);
 
-		mediaPage.clickToLessDynamicPageMenu(driver, "Dashboard");
-		dashboardPage = PageGenenratorManager.getDashboardPage(driver);
+		mediaPage.openMenuPageByPageName(driver, "Dashboard");
+		dashboardPage = PageGenenratorManagerWordPress.getDashboardAdminPage(driver);
 	}
 
 	@AfterTest
