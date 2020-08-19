@@ -386,6 +386,7 @@ public class AbstractPage {
 	public void scrollToElement(WebDriver driver, String locator) {
 		jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", findElementByXpath(driver, locator));
+		sleepInSecond(500);
 	}
 	
 	public void scrollToElement(WebDriver driver, String locator, String... values) {
@@ -455,6 +456,11 @@ public class AbstractPage {
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(locator)));
 	}
 
+	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
+		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
+		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(castToObject(locator, values))));
+	}
+	
 	public void waitForElementsClickable(WebDriver driver, String locator, String... values) {
 		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(castToObject(locator, values))));
@@ -687,8 +693,9 @@ public class AbstractPage {
 		return PageGenenratorManagerWordPress.getSearchResultUserPage(driver);
 	}
 
-	public boolean isSuccessMessageDisplayWithTextValue(String value) {
-		return false;
+	public boolean isSuccessMessageDisplayWithTextValue(WebDriver driver, String value) {
+		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_SUCCESS_MESSAGE_ON_POST_OR_PAGE_PAGE, value);
+		return isElementDisplay(driver, AbstractPageUI.DYNAMIC_SUCCESS_MESSAGE_ON_POST_OR_PAGE_PAGE, value);
 	}
 
 	private Select select;
