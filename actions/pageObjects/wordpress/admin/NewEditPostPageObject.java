@@ -24,10 +24,8 @@ public class NewEditPostPageObject extends AbstractPage {
 	}
 
 	public void clickToPublishButton() {
-		scrollToElement(driver, NewEditPostPageUI.PUBLISH_BUTTON);
-		// wait to clickable
 		waitForElementClickable(driver, NewEditPostPageUI.PUBLISH_BUTTON);
-		// click to button
+//		clickToElement(driver, NewEditPostPageUI.PUBLISH_BUTTON);
 		clickToElementByJS(driver, NewEditPostPageUI.PUBLISH_BUTTON);
 	}
 
@@ -53,7 +51,7 @@ public class NewEditPostPageObject extends AbstractPage {
 		clickToElement(driver, NewEditPostPageUI.ADD_TAG_BUTTON);
 	}
 
-	public void clickToSetFeatureImage() {
+	public void clickToSetFeatureImageLink() {
 		waitForElementVissible(driver, NewEditPostPageUI.SET_FUTURE_IMAGE_LINK);
 		clickToElement(driver, NewEditPostPageUI.SET_FUTURE_IMAGE_LINK);
 
@@ -70,8 +68,9 @@ public class NewEditPostPageObject extends AbstractPage {
 	}
 
 	public boolean isFeaureImageImageDisplayed(String imageName) {
-		waitForElementVissible(driver, NewEditPostPageUI.FEATURE_IMAGE_THUMBNAIL, imageName);
-		return isElementDisplay(driver, NewEditPostPageUI.FEATURE_IMAGE_THUMBNAIL, imageName);
+		String[] files = imageName.split("\\.");
+		waitForElementVissible(driver, NewEditPostPageUI.FEATURE_IMAGE_THUMBNAIL, files);
+		return isElementDisplay(driver, NewEditPostPageUI.FEATURE_IMAGE_THUMBNAIL, files);
 	}
 
 	public void deSelectCategoryCheckbox(String string) {

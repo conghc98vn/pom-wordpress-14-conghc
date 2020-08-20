@@ -386,7 +386,7 @@ public class AbstractPage {
 	public void scrollToElement(WebDriver driver, String locator) {
 		jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", findElementByXpath(driver, locator));
-		sleepInSecond(500);
+		sleepInSecond(1000);
 	}
 	
 	public void scrollToElement(WebDriver driver, String locator, String... values) {
@@ -698,6 +698,22 @@ public class AbstractPage {
 		return isElementDisplay(driver, AbstractPageUI.DYNAMIC_SUCCESS_MESSAGE_ON_POST_OR_PAGE_PAGE, value);
 	}
 
+	
+	public boolean isOnlyOnceRowDisplayed(WebDriver driver, String columnName, String rowValue) {
+		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_ROW_VALUE_AT_COLUMN_NAME, columnName, rowValue);
+		return isElementDisplay(driver, AbstractPageUI.DYNAMIC_ROW_VALUE_AT_COLUMN_NAME, columnName, rowValue);
+	}
+	
+	public boolean isNewPostDisplayedLatestPost(WebDriver driver, String categoryName, String postTitle, String dateCreated) {
+		waitForElementClickable(driver, AbstractPageUI.DYNAMIC_POST_WITH_CATEGORY_TITLE_DATE, categoryName, postTitle, dateCreated);
+		return isElementDisplay(driver, AbstractPageUI.DYNAMIC_POST_WITH_CATEGORY_TITLE_DATE, categoryName, postTitle, dateCreated);
+	}
+
+	public boolean isPostImageDisplayedAtPostTitleName(WebDriver driver, String string, String string2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 	private Select select;
 	private Actions action;
 	private WebElement element;

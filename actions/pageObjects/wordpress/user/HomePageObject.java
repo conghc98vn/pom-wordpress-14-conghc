@@ -19,13 +19,5 @@ public class HomePageObject extends AbstractPage{
 		
 	}
 
-	public boolean isNewPostDisplayedLatestPost(String string, String string2, String string3) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	public boolean isPostImageDisplayedAtPostTitleName(String string, String string2) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

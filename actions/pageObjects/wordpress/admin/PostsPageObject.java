@@ -24,19 +24,14 @@ public class PostsPageObject extends AbstractPage {
 		return PageGenenratorManagerWordPress.getNewOrEditPostAdminPage(driver);
 	}
 
-	public void inputToSearchTextbox(String string) {
-		// TODO Auto-generated method stub
-		
+	public void inputToSearchTextbox(String postTitle) {
+		waitForElementsVissible(driver, PostsPageUI.SEARCH_POST_TEXTBOX);
+		sendkeyToElement(driver, PostsPageUI.SEARCH_POST_TEXTBOX, postTitle);
 	}
 
 	public void clickToSearchPostButton() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public boolean isOnlyOnceRowDisplayed(String string, String string2, String string3, String string4) {
-		// TODO Auto-generated method stub
-		return false;
+		waitForElementsVissible(driver, PostsPageUI.SEARCH_POST_BUTTON);
+		clickToElement(driver, PostsPageUI.SEARCH_POST_BUTTON);
 	}
 
 	public boolean isNoPostFoundMessageDisplayed(String string) {

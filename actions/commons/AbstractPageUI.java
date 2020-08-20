@@ -5,7 +5,11 @@ public class AbstractPageUI {
 	public static final String POSTS_LINK = "//div[@class='wp-menu-name' and text()='Posts']";
 	public static final String MEDIA_LINK = "//div[@class='wp-menu-name' and text()='Media']";
 	public static final String PAGES_LINK = "//div[@class='wp-menu-name' and text()='Pages']";
-	public static final String DYNAMIC_SUCCESS_MESSAGE_ON_POST_OR_PAGE_PAGE = "";
+	public static final String DYNAMIC_SUCCESS_MESSAGE_ON_POST_OR_PAGE_PAGE = "//div[@id='message']/p";
+	public static final String DYNAMIC_ROW_VALUE_AT_COLUMN_NAME = "//td[@data-colname='%s']//a[text()='%s']";
+	public static final String DYNAMIC_POST_WITH_CATEGORY_TITLE_DATE = "//p[@class='post-categories']/a[text()='%s']/parent::p/following-sibling::h2[@class='post-title']/a[text()='%s']/parent::h2/following-sibling::p[@class='post-meta']/a[text='%s']"; // 2:11:00
+
+	
 	
 	// Dynamic Locator - WordPress
 	public static final String DYNAMIC_PAGE_LINK = "//div[@class='wp-menu-name' and text()='%s']";
