@@ -69,18 +69,12 @@ public class NewEditPostPageObject extends AbstractPage {
 
 	public void selectCategoryCheckbox(String checkboxLableText) {
 		waitForElementClickable(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
-		scrollToElement(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
-		sleepInSecond(1);
 		checkToCheckbox(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
-		sleepInSecond(1);
 	}
 
 	public void deSelectCategoryCheckbox(String checkboxLableText) {
 		waitForElementClickable(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
-		scrollToElement(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
-		sleepInSecond(1);
 		unCheckToCheckbox(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
-		sleepInSecond(1);
 	}
 
 	public void clickToDeleteTagIconWithTagName(String checkboxLableText) {
@@ -89,9 +83,8 @@ public class NewEditPostPageObject extends AbstractPage {
 	}
 
 	public PostsPageObject clickToMoveToTrashButton() {
-		// wait to clickable
-
-		// click to button return null;
+		waitForElementClickable(driver, NewEditPostPageUI.MOVE_TO_TRASH_LINK);
+		clickToElement(driver, NewEditPostPageUI.MOVE_TO_TRASH_LINK);
 		return PageGenenratorManagerWordPress.getPostsAdminPage(driver);
 	}
 

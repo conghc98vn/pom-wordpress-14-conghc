@@ -47,4 +47,16 @@ public class PostDetailPageObject extends AbstractPage{
 		waitForElementVissible(driver, PostsDetailPageUI.POST_AUTHOR_NAME, authorName);
 		return isElementDisplay(driver, PostsDetailPageUI.POST_AUTHOR_NAME, authorName);
 	}
+
+	public boolean isCategoryNameUnDisplayed(String newPostCategory) {
+		return isElementUndisplayed(driver, PostsDetailPageUI.CATEGORY_NAME, newPostCategory);
+	}
+
+	public boolean isTitleNameUnDisplayed(String newPostTitle) {
+		return isElementUndisplayed(driver, PostsDetailPageUI.POST_TITLE_NAME, newPostTitle);
+	}
+
+	public boolean isPostTagUnDisplay(String editPostTag) {
+		return isElementUndisplayed(driver, PostsDetailPageUI.POST_TAG_NAME, editPostTag);
+	}
 }

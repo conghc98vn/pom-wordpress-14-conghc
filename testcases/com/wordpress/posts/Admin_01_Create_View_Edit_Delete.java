@@ -19,7 +19,7 @@ import pageObjects.wordpress.user.PostDetailPageObject;
 import pageObjects.wordpress.user.SearchResultPageObject;
 
 public class Admin_01_Create_View_Edit_Delete extends AbstractTest {
-1  phút 20 - tag chưa đúng  - verify lại - cần check cả 2 cái mới cái cũ
+
 	String featureImageName = "android.jpg";
 	String today = getWordpressToday();
 	int fakeNumber = randomNumber();
@@ -169,9 +169,6 @@ public class Admin_01_Create_View_Edit_Delete extends AbstractTest {
 
 		verifyTrue(postsAdminPage.isOnlyOnceRowDisplayed(driver, "Title", editPostTitle));
 		verifyTrue(postsAdminPage.isOnlyOnceRowDisplayed(driver, "Author", authorName));
-		
-		verifyFalse(postsAdminPage.isOnlyOnceRowDisplayed(driver, "Categories", editPostCategory));
-
 		verifyTrue(postsAdminPage.isOnlyOnceRowDisplayed(driver, "Categories", editPostCategory));
 		verifyTrue(postsAdminPage.isOnlyOnceRowDisplayed(driver, "Tags", editPostTag));
 
@@ -186,9 +183,12 @@ public class Admin_01_Create_View_Edit_Delete extends AbstractTest {
 		// Go_Post_Detail_At_User_Page
 		postDetailUserPage = homeUserPage.clickToPostDetailWithTitleName(driver, editPostTitle);
 
+		verifyTrue(postDetailUserPage.isCategoryNameUnDisplayed(newPostCategory));
 		verifyTrue(postDetailUserPage.isCategoryNameDisplayed(editPostCategory));
+		verifyTrue(postDetailUserPage.isTitleNameUnDisplayed(newPostTitle));
 		verifyTrue(postDetailUserPage.isTitleNameDisplayed(editPostTitle));
 		verifyTrue(postDetailUserPage.isImageNameDisplayed(featureImageName));
+		verifyTrue(postDetailUserPage.isPostTagUnDisplay(newPostTag));
 		verifyTrue(postDetailUserPage.isPostTagDisplay(editPostTag));
 		verifyTrue(postDetailUserPage.isContentNameDisplayed(newPostContent));
 		verifyTrue(postDetailUserPage.isDateCreateDisplayed(today));
@@ -202,54 +202,61 @@ public class Admin_01_Create_View_Edit_Delete extends AbstractTest {
 		verifyTrue(searchResultUserPage.isPostImageDisplayedAtPostTitleName(driver, editPostTitle, featureImageName)); // isImageLoaded-fail
 	}
 
-//	@Test
-//	public void Post_03_Delete_Post_At_Admin_Page() {
-//		// Navigate to Admin site
-//		dashboardAdminPage = searchResultUserPage.openAdminLoggedPage(driver);
-//
-//		dashboardAdminPage.openMenuPageByName(driver, "Posts");
-//		postsAdminPage = PageGenenratorManagerWordPress.getPostsAdminPage(driver);
-//
-//		// Search_Post_At_Admin_Page
-//		postsAdminPage.inputToSearchTextbox("edit_title");
-//
-//		postsAdminPage.clickToSearchPostButton();
-//
-//		verifyTrue(postsAdminPage.isOnlyOnceRowDisplayed("edit_title", "author", "edit_category", "tag_edit_name"));
-//
-//		// Click to Post detail
-//		newEditPostAdminPage = postsAdminPage.clickToPostDetailByTitleName("edit_title");
-//
-//		postsAdminPage = newEditPostAdminPage.clickToMoveToTrashButton();
-//
-//		verifyTrue(newEditPostAdminPage.isSuccessMessageDisplayWithTextValue(driver, "1 post moved to the Trash. "));
-//
-//		// Search_Post_At_Admin_Page
-//		postsAdminPage.inputToSearchTextbox("edit_title");
-//
-//		postsAdminPage.clickToSearchPostButton();
-//		// check undisplay
-//		verifyFalse(postsAdminPage.isOnlyOnceRowDisplayed("edit_title", "author", "edit_category", "tag_edit_name"));
-//		// displayed
-//		verifyTrue(postsAdminPage.isNoPostFoundMessageDisplayed("No posts found."));
-//
-//		// Navigate to EndUserPage
-//		homeUserPage = postsAdminPage.openEndUserPage(driver);
-//
-//		verifyFalse(homeUserPage.isNewPostDisplayedLatestPost("edit_category", "edit_title", "date create"));
-//		verifyFalse(homeUserPage.isPostImageDisplayedAtPostTitleName("edit_title", "android.jpg"));
-//		
-//		// Search_Post_At_User_Page
-//		searchResultUserPage = homeUserPage.inputToSearchTextboxAtEndUserPage(driver, "");
-//
-//		verifyFalse(searchResultUserPage.isNewPostDisplayedLatestPost("edit_category", "edit_title", "date create"));
-//		verifyFalse(searchResultUserPage.isPostImageDisplayedAtPostTitleName("edit_title", "android.jpg"));
-//	}
+	@Test
+	public void Post_03_Delete_Post_At_Admin_Page() {
+		// Navigate to Admin site
+		dashboardAdminPage = searchResultUserPage.openAdminLoggedPage(driver);
+
+		dashboardAdminPage.openMenuPageByName(driver, "Posts");
+		postsAdminPage = PageGenenratorManagerWordPress.getPostsAdminPage(driver);
+
+		// Search_Post_At_Admin_Page
+		postsAdminPage.inputToSearchTextbox(editPostTitle);
+
+		postsAdminPage.clickToSearchPostButton();
+
+		verifyTrue(postsAdminPage.isOnlyOnceRowDisplayed(driver, "Title", editPostTitle));
+		verifyTrue(postsAdminPage.isOnlyOnceRowDisplayed(driver, "Author", authorName));
+		verifyTrue(postsAdminPage.isOnlyOnceRowDisplayed(driver, "Categories", editPostCategory));
+		verifyTrue(postsAdminPage.isOnlyOnceRowDisplayed(driver, "Tags", editPostTag));
+
+		// Click to Post detail
+		newEditPostAdminPage = postsAdminPage.clickToPostDetailByTitleName(editPostTitle);
+
+		postsAdminPage = newEditPostAdminPage.clickToMoveToTrashButton();
+
+		verifyTrue(newEditPostAdminPage.isSuccessMessageDisplayWithTextValue(driver, "1 post moved to the Trash."));
+
+		// Search_Post_At_Admin_Page
+		postsAdminPage.inputToSearchTextbox("edit_title");
+
+		postsAdminPage.clickToSearchPostButton();
+		// check undisplay
+		verifyTrue(postsAdminPage.isOnlyOnceRowUnDisplayed(driver, "Title", newPostTitle));
+		verifyTrue(postsAdminPage.isOnlyOnceRowUnDisplayed(driver, "Author", authorName));
+		verifyTrue(postsAdminPage.isOnlyOnceRowUnDisplayed(driver, "Categories", newPostCategory));
+		verifyTrue(postsAdminPage.isOnlyOnceRowUnDisplayed(driver, "Tags", newPostTag));
+		verifyTrue(postsAdminPage.isNoPostFoundMessageDisplayed("No posts found."));
+
+		// Navigate to EndUserPage
+		homeUserPage = postsAdminPage.openEndUserPage(driver);
+
+//		verifyFalse(homeUserPage.isNewPostDisplayedLatestPost(driver, editPostCategory, editPostTitle, today));
+
+//		verifyFalse(homeUserPage.isPostImageDisplayedAtPostTitleName(driver, editPostTitle, featureImageName)); // isImageLoaded-fail
+		
+		// Search_Post_At_User_Page
+		searchResultUserPage = homeUserPage.inputToSearchTextboxAtEndUserPage(driver, editPostTitle);
+
+//		verifyFalse(homeUserPage.isNewPostDisplayedLatestPost(driver, editPostCategory, editPostTitle, today));
+
+//		verifyFalse(homeUserPage.isPostImageDisplayedAtPostTitleName(driver, editPostTitle, featureImageName)); // isImageLoaded-fail
+	}
 
 	@AfterClass
 	public void afterClass() {
 		log.info("Post-Condition - Close browser");
-//		closeBrowserAndDriver(driver);
+		closeBrowserAndDriver(driver);
 	}
 
 	WebDriver driver;

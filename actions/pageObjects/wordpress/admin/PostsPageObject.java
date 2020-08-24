@@ -35,8 +35,8 @@ public class PostsPageObject extends AbstractPage {
 		clickToElement(driver, PostsPageUI.SEARCH_POST_BUTTON);
 	}
 
-	public boolean isNoPostFoundMessageDisplayed(String string) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isNoPostFoundMessageDisplayed(String value) {
+		waitForElementVissible(driver, PostsPageUI.MESSAGE_NO_POSTS_FOUND_TEXT, value);
+		return isElementDisplay(driver, PostsPageUI.MESSAGE_NO_POSTS_FOUND_TEXT, value);
 	}
 }

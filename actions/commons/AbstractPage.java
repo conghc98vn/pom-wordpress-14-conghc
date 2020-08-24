@@ -12,6 +12,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -230,28 +231,28 @@ public class AbstractPage {
 	public void checkToCheckbox(WebDriver driver, String locator) {
 		element = findElementByXpath(driver, locator);
 		if (!element.isSelected()) {
-			element.click();
+			clickToElementByJS(driver, locator);
 		}
 	}
 
 	public void checkToCheckbox(WebDriver driver, String locator, String... values) {
 		element = findElementByXpath(driver, castToObject(locator, values));
 		if (!element.isSelected()) {
-			element.click();
+			clickToElementByJS(driver, castToObject(locator, values));
 		}
 	}
 
 	public void unCheckToCheckbox(WebDriver driver, String locator) {
 		element = findElementByXpath(driver, locator);
 		if (element.isSelected()) {
-			element.click();
+			clickToElementByJS(driver, locator);
 		}
 	}
 
 	public void unCheckToCheckbox(WebDriver driver, String locator, String... values) {
 		element = findElementByXpath(driver, castToObject(locator, values));
 		if (element.isSelected()) {
-			element.click();
+			clickToElementByJS(driver, castToObject(locator, values));
 		}
 	}
 
@@ -367,6 +368,11 @@ public class AbstractPage {
 		return textActual.equals(textExpected);
 	}
 
+	public void scrollToTopPage(WebDriver driver) {
+		jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("window.scrollTo(0,0)");
+	}
+
 	public void scrollToBottomPage(WebDriver driver) {
 		jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
@@ -396,6 +402,11 @@ public class AbstractPage {
 	public void clickToElementByJS(WebDriver driver, String locator) {
 		jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].click();", findElementByXpath(driver, locator));
+	}
+
+	public void clickToElementByJS(WebDriver driver, String locator, String... values) {
+		jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].click();", findElementByXpath(driver, castToObject(locator, values)));
 	}
 
 	public void scrollToElement(WebDriver driver, String locator) {
@@ -452,6 +463,33 @@ public class AbstractPage {
 			return true;
 		}
 		return false;
+	}
+
+	public boolean waitForJStoLoad(WebDriver driver) {
+		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
+		jsExecutor = (JavascriptExecutor) driver;
+
+		// wait for jQuery to load
+		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				try {
+					return ((Long) jsExecutor.executeScript("return jQuery.active") == 0);
+				} catch (Exception e) {
+					return true;
+				}
+			}
+		};
+
+		// wait for Javascript to load
+		ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				return jsExecutor.executeScript("return document.readyState").toString().equals("complete");
+			}
+		};
+
+		return explicitWait.until(jQueryLoad) && explicitWait.until(jsLoad);
 	}
 
 	public void waitForElementVissible(WebDriver driver, String locator) {
@@ -718,6 +756,7 @@ public class AbstractPage {
 	}
 
 	public SearchResultPageObject inputToSearchTextboxAtEndUserPage(WebDriver driver, String searchValues) {
+		scrollToTopPage(driver);
 		waitForElementVissible(driver, AbstractPageUI.SEARCH_ICON);
 		clickToElement(driver, AbstractPageUI.SEARCH_ICON);
 		sendkeyToElement(driver, AbstractPageUI.SEARCH_TEXTBOX, searchValues);
@@ -734,6 +773,10 @@ public class AbstractPage {
 		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_ROW_VALUE_AT_COLUMN_NAME, columnName, rowValue);
 		return isElementDisplay(driver, AbstractPageUI.DYNAMIC_ROW_VALUE_AT_COLUMN_NAME, columnName, rowValue);
 	}
+	
+	public boolean isOnlyOnceRowUnDisplayed(WebDriver driver, String columnName, String rowValue) {
+		return isElementUndisplayed(driver, AbstractPageUI.DYNAMIC_ROW_VALUE_AT_COLUMN_NAME, columnName, rowValue);
+	}
 
 	public boolean isNewPostDisplayedLatestPost(WebDriver driver, String categoryName, String postTitle,
 			String dateCreated) {
@@ -746,6 +789,7 @@ public class AbstractPage {
 	public boolean isPostImageDisplayedAtPostTitleName(WebDriver driver, String postTitle, String featureImageName) {
 		featureImageName = featureImageName.split("\\.")[0];
 		System.out.println("isPostImageDis...(): " + featureImageName);
+		waitForJStoLoad(driver);
 		waitForElementClickable(driver, AbstractPageUI.DYNAMIC_POST_AVATAR_IMAGE_BY_TITLE, postTitle, featureImageName);
 		return isElementDisplay(driver, AbstractPageUI.DYNAMIC_POST_AVATAR_IMAGE_BY_TITLE, postTitle, featureImageName);
 //				&& isImageLoaded(driver, AbstractPageUI.DYNAMIC_POST_AVATAR_IMAGE_BY_TITLE, postTitle, fileConvert);
