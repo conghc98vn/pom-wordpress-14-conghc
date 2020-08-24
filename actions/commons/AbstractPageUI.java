@@ -7,8 +7,12 @@ public class AbstractPageUI {
 	public static final String PAGES_LINK = "//div[@class='wp-menu-name' and text()='Pages']";
 	public static final String DYNAMIC_SUCCESS_MESSAGE_ON_POST_OR_PAGE_PAGE = "//div[@id='message']/p";
 	public static final String DYNAMIC_ROW_VALUE_AT_COLUMN_NAME = "//td[@data-colname='%s']//a[text()='%s']";
-	public static final String DYNAMIC_POST_WITH_CATEGORY_TITLE_DATE = "//p[@class='post-categories']/a[text()='%s']/parent::p/following-sibling::h2[@class='post-title']/a[text()='%s']/parent::h2/following-sibling::p[@class='post-meta']/a[text='%s']"; // 2:11:00
-
+	public static final String DYNAMIC_POST_WITH_CATEGORY_TITLE_DATE = "//p[@class='post-categories']/a[text()='%s']/parent::p/following-sibling::h2[@class='post-title']/a[text()='%s']/parent::h2/following-sibling::p[@class='post-meta']/a[text()='%s']";
+	public static final String DYNAMIC_POST_AVATAR_IMAGE_BY_TITLE = "//a[@title='%s']/img[contains(@src, '%s')]";
+	public static final String DYNAMIC_POST_TITLE = "//h2[@class='post-title']/a[text()='%s']";
+	public static final String SEARCH_ICON = "//a[@class='search-toggle']";
+	public static final String SEARCH_TEXTBOX = "//input[@class='search-field']";
+	public static final String INPUT_SEARCH_ICON_BUTTON = "//span[@class='fa fw fa-search']";
 	
 	
 	// Dynamic Locator - WordPress

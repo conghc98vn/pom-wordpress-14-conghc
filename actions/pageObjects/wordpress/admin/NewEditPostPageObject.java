@@ -23,22 +23,16 @@ public class NewEditPostPageObject extends AbstractPage {
 		switchToDefaultContent(driver);
 	}
 
-	public void clickToPublishButton() {
-		waitForElementClickable(driver, NewEditPostPageUI.PUBLISH_BUTTON);
+	public void clickToPublishOrUpdateButton() {
+		waitForElementClickable(driver, NewEditPostPageUI.PUBLISH_OR_UPDATE_BUTTON);
 //		clickToElement(driver, NewEditPostPageUI.PUBLISH_BUTTON);
-		clickToElementByJS(driver, NewEditPostPageUI.PUBLISH_BUTTON);
+		clickToElementByJS(driver, NewEditPostPageUI.PUBLISH_OR_UPDATE_BUTTON);
 	}
 
 	public void inputToTitleTextbox(String titleValue) {
 		waitForElementVissible(driver, NewEditPostPageUI.ADD_TITLE_TEXTBOX);
 		sendkeyToElement(driver, NewEditPostPageUI.ADD_TITLE_TEXTBOX, titleValue);
 
-	}
-
-	public void selectCategoryCheckbox(String checkboxLableText) {
-		waitForElementClickable(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
-		scrollToElement(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
-		clickToElement(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
 	}
 
 	public void inputToTagTextbox(String tagValue) {
@@ -73,22 +67,25 @@ public class NewEditPostPageObject extends AbstractPage {
 		return isElementDisplay(driver, NewEditPostPageUI.FEATURE_IMAGE_THUMBNAIL, files);
 	}
 
-	public void deSelectCategoryCheckbox(String string) {
-		// TODO Auto-generated method stub
-
+	public void selectCategoryCheckbox(String checkboxLableText) {
+		waitForElementClickable(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
+		scrollToElement(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
+		sleepInSecond(1);
+		checkToCheckbox(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
+		sleepInSecond(1);
 	}
 
-	public void clickToDeleteTagIconWithTagName(String string) {
-		// TODO Auto-generated method stub
-
+	public void deSelectCategoryCheckbox(String checkboxLableText) {
+		waitForElementClickable(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
+		scrollToElement(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
+		sleepInSecond(1);
+		unCheckToCheckbox(driver, NewEditPostPageUI.CATEGORY_CHECKBOX, checkboxLableText);
+		sleepInSecond(1);
 	}
 
-	public void clickToUpdateButton() {
-		// wait to clickable
-
-		// click to button
-
-		// wait for icon loading invisible
+	public void clickToDeleteTagIconWithTagName(String checkboxLableText) {
+		waitForElementClickable(driver, NewEditPostPageUI.DELETE_TAG_NAME_ICON, checkboxLableText);
+		clickToElement(driver, NewEditPostPageUI.DELETE_TAG_NAME_ICON, checkboxLableText);
 	}
 
 	public PostsPageObject clickToMoveToTrashButton() {

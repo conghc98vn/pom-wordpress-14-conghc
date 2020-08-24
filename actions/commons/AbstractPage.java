@@ -32,6 +32,7 @@ import pageObjects.wordpress.admin.DashboardPageObject;
 import pageObjects.wordpress.admin.MediaPageObject;
 import pageObjects.wordpress.admin.PagesPageObject;
 import pageObjects.wordpress.admin.PostsPageObject;
+import pageObjects.wordpress.user.PostDetailPageObject;
 import pageObjects.wordpress.user.SearchResultPageObject;
 import pageUI.bankGuru.AbstractPageBankGuruUI;
 
@@ -233,8 +234,22 @@ public class AbstractPage {
 		}
 	}
 
+	public void checkToCheckbox(WebDriver driver, String locator, String... values) {
+		element = findElementByXpath(driver, castToObject(locator, values));
+		if (!element.isSelected()) {
+			element.click();
+		}
+	}
+
 	public void unCheckToCheckbox(WebDriver driver, String locator) {
 		element = findElementByXpath(driver, locator);
+		if (element.isSelected()) {
+			element.click();
+		}
+	}
+
+	public void unCheckToCheckbox(WebDriver driver, String locator, String... values) {
+		element = findElementByXpath(driver, castToObject(locator, values));
 		if (element.isSelected()) {
 			element.click();
 		}
@@ -388,10 +403,11 @@ public class AbstractPage {
 		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", findElementByXpath(driver, locator));
 		sleepInSecond(1000);
 	}
-	
+
 	public void scrollToElement(WebDriver driver, String locator, String... values) {
 		jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", findElementByXpath(driver, castToObject(locator, values)));
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);",
+				findElementByXpath(driver, castToObject(locator, values)));
 	}
 
 	public void sendkeyToElementByJS(WebDriver driver, String locator, String value) {
@@ -419,6 +435,19 @@ public class AbstractPage {
 						"return argument[0].complete && typeof arguments[0]"
 								+ ".naturalWith != 'undefined' && arguments[0]" + ".naturalWith > 0",
 						findElementByXpath(driver, locator));
+		if (status) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isImageLoaded(WebDriver driver, String locator, String... values) {
+		jsExecutor = (JavascriptExecutor) driver;
+		boolean status = (boolean) jsExecutor
+				.executeScript(
+						"return argument[0].complete && typeof arguments[0]"
+								+ ".naturalWith != 'undefined' && arguments[0]" + ".naturalWith > 0",
+						findElementByXpath(driver, castToObject(locator, values)));
 		if (status) {
 			return true;
 		}
@@ -460,7 +489,7 @@ public class AbstractPage {
 		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(castToObject(locator, values))));
 	}
-	
+
 	public void waitForElementsClickable(WebDriver driver, String locator, String... values) {
 		explicitWait = new WebDriverWait(driver, GlobalConstans.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(byXpath(castToObject(locator, values))));
@@ -522,7 +551,7 @@ public class AbstractPage {
 		boolean status = false;
 		int number = fileNames.length;
 
-		waitForElementsInvissible(driver, AbstractPageUI.MEDIA_INPROGRESS_BAR_ICON);
+//		waitForElementsInvissible(driver, AbstractPageUI.MEDIA_INPROGRESS_BAR_ICON);
 		sleepInSecond(5);
 //		waitForElementsVissible(driver, AbstractPageUI.ALL_UPLOAD_IMAGE);
 		elements = findElementsByXpath(driver, AbstractPageUI.ALL_UPLOAD_IMAGE);
@@ -543,7 +572,7 @@ public class AbstractPage {
 		for (String fileName : fileNames) {
 			String[] files = fileName.split("\\.");
 			fileName = files[0].toLowerCase();
-			System.out.println(fileName);
+			System.out.println("areFile...(): " + fileName);
 			for (i = 0; i < imageValues.size(); i++) {
 				if (!imageValues.get(i).contains(fileName)) {
 					status = false;
@@ -688,8 +717,11 @@ public class AbstractPage {
 		return PageGenenratorManagerWordPress.getDashboardAdminPage(driver);
 	}
 
-	public SearchResultPageObject inputToSearchTextboxAtEndUserPage(WebDriver driver, String value) {
-
+	public SearchResultPageObject inputToSearchTextboxAtEndUserPage(WebDriver driver, String searchValues) {
+		waitForElementVissible(driver, AbstractPageUI.SEARCH_ICON);
+		clickToElement(driver, AbstractPageUI.SEARCH_ICON);
+		sendkeyToElement(driver, AbstractPageUI.SEARCH_TEXTBOX, searchValues);
+		clickToElement(driver, AbstractPageUI.INPUT_SEARCH_ICON_BUTTON);
 		return PageGenenratorManagerWordPress.getSearchResultUserPage(driver);
 	}
 
@@ -698,22 +730,34 @@ public class AbstractPage {
 		return isElementDisplay(driver, AbstractPageUI.DYNAMIC_SUCCESS_MESSAGE_ON_POST_OR_PAGE_PAGE, value);
 	}
 
-	
 	public boolean isOnlyOnceRowDisplayed(WebDriver driver, String columnName, String rowValue) {
 		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_ROW_VALUE_AT_COLUMN_NAME, columnName, rowValue);
 		return isElementDisplay(driver, AbstractPageUI.DYNAMIC_ROW_VALUE_AT_COLUMN_NAME, columnName, rowValue);
 	}
-	
-	public boolean isNewPostDisplayedLatestPost(WebDriver driver, String categoryName, String postTitle, String dateCreated) {
-		waitForElementClickable(driver, AbstractPageUI.DYNAMIC_POST_WITH_CATEGORY_TITLE_DATE, categoryName, postTitle, dateCreated);
-		return isElementDisplay(driver, AbstractPageUI.DYNAMIC_POST_WITH_CATEGORY_TITLE_DATE, categoryName, postTitle, dateCreated);
+
+	public boolean isNewPostDisplayedLatestPost(WebDriver driver, String categoryName, String postTitle,
+			String dateCreated) {
+		waitForElementClickable(driver, AbstractPageUI.DYNAMIC_POST_WITH_CATEGORY_TITLE_DATE, categoryName, postTitle,
+				dateCreated);
+		return isElementDisplay(driver, AbstractPageUI.DYNAMIC_POST_WITH_CATEGORY_TITLE_DATE, categoryName, postTitle,
+				dateCreated);
 	}
 
-	public boolean isPostImageDisplayedAtPostTitleName(WebDriver driver, String string, String string2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isPostImageDisplayedAtPostTitleName(WebDriver driver, String postTitle, String featureImageName) {
+		featureImageName = featureImageName.split("\\.")[0];
+		System.out.println("isPostImageDis...(): " + featureImageName);
+		waitForElementClickable(driver, AbstractPageUI.DYNAMIC_POST_AVATAR_IMAGE_BY_TITLE, postTitle, featureImageName);
+		return isElementDisplay(driver, AbstractPageUI.DYNAMIC_POST_AVATAR_IMAGE_BY_TITLE, postTitle, featureImageName);
+//				&& isImageLoaded(driver, AbstractPageUI.DYNAMIC_POST_AVATAR_IMAGE_BY_TITLE, postTitle, fileConvert);
 	}
-	
+
+	public PostDetailPageObject clickToPostDetailWithTitleName(WebDriver driver, String postTitle) {
+		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_POST_TITLE, postTitle);
+		clickToElement(driver, AbstractPageUI.DYNAMIC_POST_TITLE, postTitle);
+		return PageGenenratorManagerWordPress.getPostDetailUserPage(driver);
+
+	}
+
 	private Select select;
 	private Actions action;
 	private WebElement element;

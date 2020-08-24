@@ -13,8 +13,9 @@ public class PostsPageObject extends AbstractPage {
 		this.driver = driver;
 	}
 
-	public NewEditPostPageObject clickToPostDetailByTitleName(String string) {
-		// TODO Auto-generated method stub
+	public NewEditPostPageObject clickToPostDetailByTitleName(String titleName) {
+		waitForElementClickable(driver, PostsPageUI.POST_TITLE_LINK, titleName);
+		clickToElement(driver, PostsPageUI.POST_TITLE_LINK, titleName);
 		return PageGenenratorManagerWordPress.getNewOrEditPostAdminPage(driver);
 	}
 

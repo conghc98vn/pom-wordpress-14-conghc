@@ -12,12 +12,7 @@ public class HomePageObject extends AbstractPage{
 		this.driver = driver;
 	}
 
-	public PostDetailPageObject clickToPostDetailWithTitleName(String titleValue) {
-		// TODO
-		
-		return PageGenenratorManagerWordPress.getPostDetailUserPage(driver);
-		
-	}
+
 
 
 }

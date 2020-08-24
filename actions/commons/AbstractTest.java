@@ -221,7 +221,8 @@ public abstract class AbstractTest {
 	}
 
 	protected String getWordpressToday() {
-		return getCurrentYear() + "/" + getCurrentMonth() + "/" + getCurrentDay();
+//		return getCurrentYear() + "/" + getCurrentMonth() + "/" + getCurrentDay();
+		return getCurrentDay() + "/" + getCurrentMonth() + "/" + getCurrentYear();
 	}
 	
 	protected String getBankGuruToday() {
