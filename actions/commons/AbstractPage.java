@@ -1,6 +1,7 @@
 package commons;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -773,7 +774,7 @@ public class AbstractPage {
 		waitForElementVissible(driver, AbstractPageUI.DYNAMIC_ROW_VALUE_AT_COLUMN_NAME, columnName, rowValue);
 		return isElementDisplay(driver, AbstractPageUI.DYNAMIC_ROW_VALUE_AT_COLUMN_NAME, columnName, rowValue);
 	}
-	
+
 	public boolean isOnlyOnceRowUnDisplayed(WebDriver driver, String columnName, String rowValue) {
 		return isElementUndisplayed(driver, AbstractPageUI.DYNAMIC_ROW_VALUE_AT_COLUMN_NAME, columnName, rowValue);
 	}
@@ -800,6 +801,158 @@ public class AbstractPage {
 		clickToElement(driver, AbstractPageUI.DYNAMIC_POST_TITLE, postTitle);
 		return PageGenenratorManagerWordPress.getPostDetailUserPage(driver);
 
+	}
+
+	public boolean isDataSortedAscending(WebDriver driver, String locator) {
+		// Khai báo 1 Array List
+		ArrayList<String> arrayList = new ArrayList<String>();
+
+		// Tìm tất cả element matching với điều kiện(Name/ Price/Date/...)
+		List<WebElement> elementList = findElementsByXpath(driver, locator);
+
+		// Lấy text của từng element add vào Array List
+		for (WebElement element : elementList) {
+			arrayList.add(element.getText());
+		}
+
+		System.out.println("---------- Dữ liệu trên UI: ---------");
+		for (String name : arrayList) {
+			System.out.println(name);
+		}
+
+		// Copy qua 1 array list mới để SORT trong Code
+		ArrayList<String> sortedList = new ArrayList<>();
+		for (String child : arrayList) {
+			sortedList.add(child);
+		}
+
+		// Thực hiện SORT ASC
+		Collections.sort(sortedList);
+
+		System.out.println("---------- Dữ liệu đã SORT ASC trong code: ---------");
+		for (String name : sortedList) {
+			System.out.println(name);
+		}
+
+		// Verify 2 array bằng nhau - nếu dữ liệu sort trên UI không chính xác thì kết
+		// quả trả về sai
+		return sortedList.equals(arrayList);
+	}
+
+	public boolean isDataSortedDecending(WebDriver driver, String locator) {
+		// Khai báo 1 Array List
+		ArrayList<String> arrayList = new ArrayList<String>();
+
+		// Tìm tất cả element matching với điều kiện(Name/ Price/Date/...)
+		List<WebElement> elementList = findElementsByXpath(driver, locator);
+
+		// Lấy text của từng element add vào Array List
+		for (WebElement element : elementList) {
+			arrayList.add(element.getText());
+		}
+
+		System.out.println("---------- Dữ liệu trên UI: ---------");
+		for (String name : arrayList) {
+			System.out.println(name);
+		}
+
+		// Copy qua 1 array list mới để SORT trong Code
+		ArrayList<String> sortedList = new ArrayList<>();
+		for (String child : arrayList) {
+			sortedList.add(child);
+		}
+
+		// Thực hiện SORT ASC
+		Collections.sort(sortedList);
+
+		System.out.println("---------- Dữ liệu đã SORT ASC trong code: ---------");
+		for (String name : sortedList) {
+			System.out.println(name);
+		}
+
+		// Reverse data để sort DESC (Dùng 1 trong 2 cách bên dưới)
+		Collections.reverse(sortedList);
+		// Collections.sort(arrayList, Collections.reverseOrder());
+
+		System.out.println("---------- Dữ liệu đã SORT DESC trong code: ---------");
+		for (String name : sortedList) {
+			System.out.println(name);
+		}
+
+		// Verify 2 array bằng nhau - nếu dữ liệu sort trên UI không chính xác thì kết
+		// quả trả về sai
+		return sortedList.equals(arrayList);
+	}
+
+	public boolean isPriceSortedAscending(WebDriver driver, String locator) {
+		// Khai báo 1 Array List
+		ArrayList<Float> arrayList = new ArrayList<Float>();
+
+		// Tìm tất cả element matching với điều kiện (Name/ Price/ Date/...)
+		List<WebElement> elementList = findElementsByXpath(driver, locator);
+
+		// Lấy text của từng element add vào từng Array List
+		for (WebElement element : elementList) {
+			arrayList.add(Float.parseFloat(element.getText().replace("$", "").trim()));
+		}
+
+		// Copy qua 1 array list mới để SORT trong Code
+		ArrayList<Float> sortedList = new ArrayList<Float>();
+		for (Float child : arrayList) {
+			sortedList.add(child);
+		}
+
+		// Thực hiện SORT ASC
+		Collections.sort(sortedList);
+
+		System.out.println("---------- Dữ liệu đã SORT ASC trong code: ---------");
+		for (Float name : sortedList) {
+			System.out.println(name);
+		}
+
+		// Verify 2 array bằng nhau - nếu dữ liệu sort trên UI không chính xác thì kết
+		// quả trả về sai
+		return sortedList.equals(arrayList);
+	}
+
+	public boolean isPriceSortedDecending(WebDriver driver, String locator) {
+		// Khai báo 1 Array List
+		ArrayList<Float> arrayList = new ArrayList<Float>();
+
+		// Tìm tất cả element matching với điều kiện (Name/ Price/ Date/...)
+		List<WebElement> elementList = findElementsByXpath(driver, locator);
+
+		// Lấy text của từng element add vào từng Array List
+		for (WebElement element : elementList) {
+			arrayList.add(Float.parseFloat(element.getText().replace("$", "").trim()));
+		}
+
+		// Copy qua 1 array list mới để SORT trong Code
+		ArrayList<Float> sortedList = new ArrayList<Float>();
+		for (Float child : arrayList) {
+			sortedList.add(child);
+		}
+
+		// Thực hiện SORT ASC
+		Collections.sort(sortedList);
+
+		System.out.println("---------- Dữ liệu đã SORT ASC trong code: ---------");
+		for (Float name : sortedList) {
+			System.out.println(name);
+		}
+
+		// Reverse data để sort DESC (Dùng 1 trong 2 cách bên dưới)
+		Collections.reverse(sortedList);
+		// Collections.sort(arrayList, Collections.reverseOrder());
+
+		System.out.println("---------- Dữ liệu đã SORT DESC trong code: ---------");
+		for (Float name : sortedList) {
+			System.out.println(name);
+		}
+
+		// Verify 2 array bằng nhau - nếu dữ liệu sort trên UI không chính xác thì kết
+		// quả trả về sai
+		return sortedList.equals(arrayList);
 	}
 
 	private Select select;

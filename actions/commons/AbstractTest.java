@@ -21,18 +21,23 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public abstract class AbstractTest {
 	WebDriver driver;
 	protected final Log log;
-	
+
 	protected AbstractTest() {
 		log = LogFactory.getLog(getClass());
 	}
-	
+
 	public WebDriver getBrowserDriver(String browserName) {
 		if (browserName.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
-		} else if (browserName.equalsIgnoreCase("chrome")) {
+		} else if (browserName.equalsIgnoreCase("firefox")) {
+			WebDriverManager.firefoxdriver().setup();
+		
+		} else if (browserName.equalsIgnoreCase("firefox_headless")) {
+			/// settup
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
+			
 		} else if (browserName.equalsIgnoreCase("edge")) {
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
@@ -50,11 +55,11 @@ public abstract class AbstractTest {
 			System.out.println("Please choose your browser !");
 		}
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		driver.manage().window().maximize();	
+		driver.manage().window().maximize();
 		driver.get(GlobalConstans.ADMIN_WORDPRESS_URL);
 		return driver;
 	}
-	
+
 	public WebDriver getBrowserDriver(String browserName, String appURL) {
 		if (browserName.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
@@ -83,7 +88,7 @@ public abstract class AbstractTest {
 		driver.get(appURL);
 		return driver;
 	}
-	
+
 	public Date getDateTimeNow() {
 		Date date = new Date();
 		return date;
@@ -150,12 +155,12 @@ public abstract class AbstractTest {
 	protected boolean verifyEquals(Object actual, Object expected) {
 		return checkEquals(actual, expected);
 	}
-	
+
 	public static int randomNumber() {
 		Random rand = new Random();
 		return rand.nextInt(9999);
 	}
-	
+
 	protected void closeBrowserAndDriver(WebDriver driver) {
 		try {
 			// get ra tên của OS và convert qua chữ thường
@@ -194,7 +199,7 @@ public abstract class AbstractTest {
 			log.info(e.getMessage());
 		}
 	}
-	
+
 	protected String getCurrentDay() {
 		DateTime nowUTC = new DateTime();
 		int day = nowUTC.getDayOfMonth();
@@ -224,7 +229,7 @@ public abstract class AbstractTest {
 //		return getCurrentYear() + "/" + getCurrentMonth() + "/" + getCurrentDay();
 		return getCurrentDay() + "/" + getCurrentMonth() + "/" + getCurrentYear();
 	}
-	
+
 	protected String getBankGuruToday() {
 		return getCurrentYear() + "-" + getCurrentMonth() + "-" + getCurrentDay();
 	}
