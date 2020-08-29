@@ -1,7 +1,7 @@
 package com.wordpress.pages;
 
-import org.junit.BeforeClass;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Page_01_NewAndViewPage {

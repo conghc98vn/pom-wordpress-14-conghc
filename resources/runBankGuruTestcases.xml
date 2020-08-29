@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Bank Guru" parallel="false">
 
-  <test name="Run on FIREFOX browser">
-  <parameter name="browser" value="chrome" />
-    <classes>
-      <class name="com.bankguru.login.Login_04_Dynamic_Page_Element"/>
-    </classes>
-  </test> <!-- Test -->
+	<test name="Run on FIREFOX browser">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.bankguru.login.Login_04_Dynamic_Page_Element" />
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->

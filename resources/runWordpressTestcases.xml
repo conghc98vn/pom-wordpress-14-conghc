@@ -1,55 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Word Press" parallel="tests" thread-count="3">
-	
+
 	<listeners>
-		<listener class-name="commons.MethodListener"/>
-		
+		<listener class-name="commons.MethodListener" />
+
 		<!-- Extent version 2.xx -->
 		<!-- <listener class-name="reportConfig.ExtentReportListener"/> -->
-		
+
 		<!-- Extent version 3.xx -->
 		<!-- <listener class-name="reportConfig.ExtentTestListener"/> -->
-		
+
 		<!-- Extent version 4.xx -->
-		<listener class-name="reportConfig.ExtentListener"/>
-		
-		<listener class-name="org.uncommons.reportng.HTMLReporter"/>
-		<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+		<listener class-name="reportConfig.ExtentListener" />
+
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener
+			class-name="org.uncommons.reportng.JUnitXMLReporter" />
 	</listeners>
 
-   <test name="Run on FIREFOX">
-   	<parameter name="browser" value="chrome" />
-    <classes>
-      <class name="com.wordpress.posts.Admin_01_Create_View_Edit_Delete"/>
-    </classes>
-  </test> 
-  
-  <test name="Run on CHROME">
-   	<parameter name="browser" value="chrome" />
-    <classes>
-      <class name="com.wordpress.posts.Admin_01_Create_View_Edit_Delete"/>
-    </classes>
-  </test>
-  
-  <test name="Run on FIREFOX_HEADLESS">
-   	<parameter name="browser" value="chrome" />
-    <classes>
-      <class name="com.wordpress.posts.Admin_01_Create_View_Edit_Delete"/>
-    </classes>
-  </test>
-  
-  <test name="Run on CHROME_HEADLESS">
-   	<parameter name="browser" value="chrome_headless" />
-    <classes>
-      <class name="com.wordpress.posts.Admin_01_Create_View_Edit_Delete"/>
-    </classes>
-  </test>
-  
-  <test name="Run on EDGE">
-   	<parameter name="browser" value="edge" />
-    <classes>
-      <class name="com.wordpress.posts.Admin_01_Create_View_Edit_Delete"/>
-    </classes>
-  </test>
-  
+<!-- 	<test name="Run on FIREFOX"> -->
+<!-- 		<parameter name="browser" value="firefox" /> -->
+<!-- 		<classes> -->
+<!-- 			<class -->
+<!-- 				name="com.wordpress.posts.Admin_01_Create_View_Edit_Delete" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+	<test name="Run on CHROME">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class
+				name="com.wordpress.posts.Admin_01_Create_View_Edit_Delete" />
+		</classes>
+	</test>
+
+	<!-- <test name="Run on FIREFOX_HEADLESS"> -->
+	<!-- <parameter name="browser" value="chrome" /> -->
+	<!-- <classes> -->
+	<!-- <class name="com.wordpress.posts.Admin_01_Create_View_Edit_Delete"/> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+
+	<!-- <test name="Run on CHROME_HEADLESS"> -->
+	<!-- <parameter name="browser" value="chrome_headless" /> -->
+	<!-- <classes> -->
+	<!-- <class name="com.wordpress.posts.Admin_01_Create_View_Edit_Delete"/> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+
+	<!-- <test name="Run on EDGE"> -->
+	<!-- <parameter name="browser" value="edge" /> -->
+	<!-- <classes> -->
+	<!-- <class name="com.wordpress.posts.Admin_01_Create_View_Edit_Delete"/> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+
+	<!-- <test name="Run on COCCOC"> -->
+	<!-- <parameter name="browser" value="edge" /> -->
+	<!-- <classes> -->
+	<!-- <class name="com.wordpress.posts.Admin_01_Create_View_Edit_Delete"/> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+
 </suite> 

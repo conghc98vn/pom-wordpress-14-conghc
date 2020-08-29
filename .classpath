@@ -6,16 +6,7 @@
 	<classpathentry kind="src" path="interfaces"/>
 	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="libraries/selenium-server-standalone-2.53.1.jar"/>
-	<classpathentry kind="lib" path="libDriverManager/gson-2.8.5.jar"/>
-	<classpathentry kind="lib" path="libDriverManager/httpclient-4.5.6.jar"/>
-	<classpathentry kind="lib" path="libDriverManager/jarchivelib-1.0.0.jar"/>
-	<classpathentry kind="lib" path="libDriverManager/jsoup-1.11.3.jar"/>
-	<classpathentry kind="lib" path="libDriverManager/slf4j-api-1.7.25.jar"/>
-	<classpathentry kind="lib" path="libDriverManager/webdrivermanager-3.6.2.jar"/>
 	<classpathentry kind="lib" path="libLog/commons-codec-1.11.jar"/>
-	<classpathentry kind="lib" path="libLog/commons-io-2.6.jar"/>
-	<classpathentry kind="lib" path="libLog/commons-lang3-3.8.1.jar"/>
 	<classpathentry kind="lib" path="libLog/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="libLog/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="libReportNG/commons-collections-3.2.1.jar"/>
@@ -36,7 +27,19 @@
 	<classpathentry kind="lib" path="libExtendReportVersion4/jcommander-1.48.jar"/>
 	<classpathentry kind="lib" path="libExtendReportVersion4/mongodb-driver-3.3.0.jar"/>
 	<classpathentry kind="lib" path="libExtendReportVersion4/mongodb-driver-core-3.3.0.jar"/>
-	<classpathentry kind="lib" path="libExtendReportVersion4/testng-6.9.10.jar"/>
 	<classpathentry kind="lib" path="libraries/joda-time-2.0.jar"/>
+	<classpathentry kind="lib" path="libraries/testng-6.14.3.jar"/>
+	<classpathentry kind="lib" path="libraries/selenium-server-standalone-3.141.59.jar"/>
+	<classpathentry kind="lib" path="libDriverManagerLastest/commons-codec-1.13.jar"/>
+	<classpathentry kind="lib" path="libDriverManagerLastest/commons-compress-1.18.jar"/>
+	<classpathentry kind="lib" path="libDriverManagerLastest/commons-io-2.7.jar"/>
+	<classpathentry kind="lib" path="libDriverManagerLastest/commons-lang3-3.10.jar"/>
+	<classpathentry kind="lib" path="libDriverManagerLastest/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="libDriverManagerLastest/httpclient5-5.0.1.jar"/>
+	<classpathentry kind="lib" path="libDriverManagerLastest/httpcore5-5.0.1.jar"/>
+	<classpathentry kind="lib" path="libDriverManagerLastest/jarchivelib-1.0.0.jar"/>
+	<classpathentry kind="lib" path="libDriverManagerLastest/jsoup-1.13.1.jar"/>
+	<classpathentry kind="lib" path="libDriverManagerLastest/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="libDriverManagerLastest/webdrivermanager-4.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
