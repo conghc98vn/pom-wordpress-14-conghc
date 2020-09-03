@@ -11,6 +11,7 @@ public class GlobalConstans{
 	public static long LONG_TIMEOUT = 30;
 	public static long SHORT_TIMEOUT = 5;
 	public static String BROWSER_LOG_FOLDER = ROOT_FOLDER + "\\browserLog";
+	public static String BROWSER_EXTENSION_FOLDER = ROOT_FOLDER + "\\browserExtension";	
 	public static String DOWNLOAD_FOLDER = ROOT_FOLDER + "\\downloadFiles";
 	public static String UPLOAD_FOLDER = ROOT_FOLDER + "\\uploadFiles\\";
 	

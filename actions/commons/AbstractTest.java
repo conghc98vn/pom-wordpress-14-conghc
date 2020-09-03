@@ -1,6 +1,11 @@
 package commons;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +18,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -28,10 +36,41 @@ public abstract class AbstractTest {
 		log = LogFactory.getLog(getClass());
 	}
 
+	protected void showBrowserConsoleLogs(WebDriver driver) {
+		if (driver.toString().contains("chrome")) {
+			LogEntries logs = driver.manage().logs().get("browser");
+			List<LogEntry> logList = logs.getAll();
+			for (LogEntry logging : logList) {
+				System.out.println("----------" + logging.getLevel().toString() + "----------" + logging.getMessage());
+			}
+		}
+	}
+
 	public WebDriver getBrowserDriver(String browserName) {
 		if (browserName.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
+
+			System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
+			System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,
+					GlobalConstans.BROWSER_LOG_FOLDER + "\\Firefox-" + getDateNumber() + ".log");
+
+			// Config extension
+			FirefoxProfile profile = new FirefoxProfile();
+			File translate = new File(GlobalConstans.BROWSER_EXTENSION_FOLDER + "\\to_google_translate-4.0.6-fx.xpi");
+			profile.addExtension(translate);
+			FirefoxOptions options = new FirefoxOptions();
+			options.setProfile(profile);
+
+			// Config folder download - Firefox
+			options.addPreference("browser.download.folderList", 2);
+			options.addArguments("browser.download.dir", GlobalConstans.DOWNLOAD_FOLDER);
+			options.addPreference("browser.download.useDownloadDir", true);
+			options.addPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
+			options.addPreference("pdfjs.disable", true);
+
+			options.addArguments("-private"); // Chế độ ẩn danh
+
+			driver = new FirefoxDriver(options);
 		} else if (browserName.equalsIgnoreCase("firefox_headless")) {
 			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions options = new FirefoxOptions();
@@ -41,7 +80,7 @@ public abstract class AbstractTest {
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
 		} else if (browserName.equalsIgnoreCase("ie")) {
-			WebDriverManager.iedriver().arch64().setup();
+			WebDriverManager.iedriver().arch32().setup();
 			driver = new InternetExplorerDriver();
 		} else if (browserName.equalsIgnoreCase("safari")) {
 			driver = new SafariDriver();
@@ -53,7 +92,27 @@ public abstract class AbstractTest {
 			driver = new ChromeDriver(options);
 		} else if (browserName.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+
+			// Add Extension
+			File file = new File(GlobalConstans.BROWSER_EXTENSION_FOLDER + "\\extension_2_0_9_0.crx");
+			ChromeOptions options = new ChromeOptions();
+			options.addExtensions(file);
+
+			// Config folder download - Chrome
+			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+			chromePrefs.put("profile .default_content_settings.popups", 0);
+			chromePrefs.put("download.default)directory", GlobalConstans.DOWNLOAD_FOLDER);
+
+			// Config language
+			options.addArguments("--lang=vi");
+			options.addArguments("--incognito"); // Chế độ ẩn danh
+			options.setExperimentalOption("useAutomationExtension", false);
+			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+
+			options.setExperimentalOption("prefs", chromePrefs);
+
+			driver = new ChromeDriver(options);
+
 		} else if (browserName.equals("coccoc")) {
 //			WebDriverManager.chromedriver().version("").setup(); // search version phù hợp với phiên bản coccoc
 			ChromeOptions options = new ChromeOptions();
@@ -189,6 +248,8 @@ public abstract class AbstractTest {
 			// Khai báo 1 biến command line để thực thi
 			String cmd = "";
 			if (driver != null) {
+				// Apply for IE Browser
+				driver.manage().deleteAllCookies();
 				driver.quit();
 			}
 
@@ -251,5 +312,11 @@ public abstract class AbstractTest {
 
 	protected String getBankGuruToday() {
 		return getCurrentYear() + "-" + getCurrentMonth() + "-" + getCurrentDay();
+	}
+
+	private String getDateNumber() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		return formatter.format(date).replace(":", "-").replace(" ", "-");
 	}
 }

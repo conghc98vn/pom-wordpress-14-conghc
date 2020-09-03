@@ -152,11 +152,23 @@ public class AbstractPage {
 	}
 
 	public void clickToElement(WebDriver driver, String locator) {
-		findElementByXpath(driver, locator).click();
+		if (driver.toString().contains("internet explorer")) {
+			clickToElementByJS(driver, locator);
+			sleepInSecond(3);
+		} else {
+			//Chrome - Firefox - Opera - ...
+			findElementByXpath(driver, locator).click();
+		}
 	}
 
 	public void clickToElement(WebDriver driver, String locator, String... values) {
-		findElementByXpath(driver, castToObject(locator, values)).click();
+		if (driver.toString().contains("internet explorer")) {
+			clickToElementByJS(driver, castToObject(locator, values));
+			sleepInSecond(3);
+		} else {
+			//Chrome - Firefox - Opera - ...
+			findElementByXpath(driver, castToObject(locator, values)).click();
+		}
 	}
 
 	public void sendkeyToElement(WebDriver driver, String locator, String value) {
