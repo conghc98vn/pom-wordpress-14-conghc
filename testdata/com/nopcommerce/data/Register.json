@@ -10,5 +10,11 @@
 	"Login" : {
 		"username" : "Automation",
 		"password" : "Automation"
-	}
+	},
+	
+	"firstname": "Automation",
+		"lastname": "Testing",
+		"email": "autotest",
+		"company": "Auto Test",
+		"password": "123456"
 }

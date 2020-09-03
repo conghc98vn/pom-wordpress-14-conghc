@@ -36,7 +36,7 @@ public class EndUserJson {
 	
 	@JsonProperty("password")
 	String password;
-
+	
 	public String getFirstName() {
 		return firstname;
 	}
@@ -53,7 +53,7 @@ public class EndUserJson {
 		return email;
 	}
 
-	public String getCompany() {
+	public String getCompanyName() {
 		return company;
 	}
 	

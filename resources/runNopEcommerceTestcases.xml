@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Word Press">
-   <test name="Run on CHROME">
-   	<parameter name="browser" value="chrome" />
-    <classes>
-      <class name="com.nopcomerce.myaccount.MyAccount_01_Update_Info"/>
-    </classes>
-  </test> 
+	<test name="Run on CHROME">
+		<parameter name="browser" value="chrome" />
+		<parameter name="firstname" value="First" />
+		<parameter name="lastname" value="Last" />
+		<parameter name="email" value="auto@gmail.com" />
+		<parameter name="company" value="Testing" />
+		<parameter name="password" value="123abc" />
+		<classes>
+			<!-- <class name="com.nopcomerce.myaccount.MyAccount_01_Update_Info"/> -->
+			<class name="com.nopcommerce.endUser.Regiser_04_Data_In_Class" />
+		</classes>
+	</test>
 </suite> 
