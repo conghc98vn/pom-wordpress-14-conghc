@@ -25,6 +25,7 @@ import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.BeforeSuite;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -35,7 +36,36 @@ public abstract class AbstractTest {
 	protected AbstractTest() {
 		log = LogFactory.getLog(getClass());
 	}
+	
+	public WebDriver getDriver() {
+		return driver;
+	}
 
+	// Xóa tất cả các file trong folder chứa screenshot
+	@BeforeSuite
+	public void deleteAllFilesInReportNGScreenshot() {
+		System.out.println("----- START delete file in folder -----");
+		deleteAllFileInFolder();
+		System.out.println("----- END delete file in folder -----");
+	}
+	
+	public void deleteAllFileInFolder() {
+		try {
+			String workingDir = System.getProperty("user.dir");
+			String pathFolderImageReportNG  = workingDir + "\\ReportNGScreenshots";
+			File file = new File(pathFolderImageReportNG);
+			File[] listOfFiles = file.listFiles();
+			for (int i = 0; i < listOfFiles.length; i++) {
+				if (listOfFiles[i].isFile()) {
+					System.out.println(listOfFiles[i].getName());
+					new File(listOfFiles[i].toString()).delete();
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 	protected void showBrowserConsoleLogs(WebDriver driver) {
 		if (driver.toString().contains("chrome")) {
 			LogEntries logs = driver.manage().logs().get("browser");

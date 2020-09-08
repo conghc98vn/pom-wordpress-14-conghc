@@ -12,7 +12,7 @@
 
 		<!-- Extent version 4.xx -->
 		<listener class-name="reportConfig.ExtentListener" />
-
+		<listener class-name="reportConfig.ReportNGListener" />
 		<listener class-name="org.uncommons.reportng.HTMLReporter" />
 		<listener
 			class-name="org.uncommons.reportng.JUnitXMLReporter" />

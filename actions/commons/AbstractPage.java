@@ -61,7 +61,7 @@ public class AbstractPage {
 	}
 
 	public String getPageSource(WebDriver driver) {
-		return driver.getPageSource();
+		return driver.getPageSource();	
 	}
 
 	public void back(WebDriver driver) {
