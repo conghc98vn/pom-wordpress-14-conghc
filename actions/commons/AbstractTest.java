@@ -36,7 +36,7 @@ public abstract class AbstractTest {
 	protected AbstractTest() {
 		log = LogFactory.getLog(getClass());
 	}
-	
+
 	public WebDriver getDriver() {
 		return driver;
 	}
@@ -48,11 +48,11 @@ public abstract class AbstractTest {
 		deleteAllFileInFolder();
 		System.out.println("----- END delete file in folder -----");
 	}
-	
+
 	public void deleteAllFileInFolder() {
 		try {
 			String workingDir = System.getProperty("user.dir");
-			String pathFolderImageReportNG  = workingDir + "\\ReportNGScreenshots";
+			String pathFolderImageReportNG = workingDir + "\\ReportNGScreenshots";
 			File file = new File(pathFolderImageReportNG);
 			File[] listOfFiles = file.listFiles();
 			for (int i = 0; i < listOfFiles.length; i++) {
@@ -65,7 +65,7 @@ public abstract class AbstractTest {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	protected void showBrowserConsoleLogs(WebDriver driver) {
 		if (driver.toString().contains("chrome")) {
 			LogEntries logs = driver.manage().logs().get("browser");

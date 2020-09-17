@@ -61,7 +61,7 @@ public class AbstractPage {
 	}
 
 	public String getPageSource(WebDriver driver) {
-		return driver.getPageSource();	
+		return driver.getPageSource();
 	}
 
 	public void back(WebDriver driver) {
@@ -156,7 +156,7 @@ public class AbstractPage {
 			clickToElementByJS(driver, locator);
 			sleepInSecond(3);
 		} else {
-			//Chrome - Firefox - Opera - ...
+			// Chrome - Firefox - Opera - ...
 			findElementByXpath(driver, locator).click();
 		}
 	}
@@ -166,7 +166,7 @@ public class AbstractPage {
 			clickToElementByJS(driver, castToObject(locator, values));
 			sleepInSecond(3);
 		} else {
-			//Chrome - Firefox - Opera - ...
+			// Chrome - Firefox - Opera - ...
 			findElementByXpath(driver, castToObject(locator, values)).click();
 		}
 	}
