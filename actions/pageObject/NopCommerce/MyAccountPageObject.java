@@ -221,4 +221,20 @@ public class MyAccountPageObject extends AbstractPage {
 		waitForElementsVissible(driver, MyAccountPageUI.FULL_NAME_ADDRESS_TEXT);
 		return getElementText(driver, MyAccountPageUI.FULL_NAME_ADDRESS_TEXT);
 	}
+
+	public void inputToOldPasswordTextbox(String oldPassword) {
+		waitForElementVissible(driver, MyAccountPageUI.OLD_PASSWORD_TEXTBOX);
+		sendkeyToElement(driver, MyAccountPageUI.OLD_PASSWORD_TEXTBOX, oldPassword);
+	}
+
+	public void inputToNewPasswordTextbox(String newPassword) {
+		waitForElementVissible(driver, MyAccountPageUI.NEW_PASSWORD_TEXTBOX);
+		sendkeyToElement(driver, MyAccountPageUI.NEW_PASSWORD_TEXTBOX, newPassword);		
+	}
+
+	public void inputToConfirmPasswordTextbox(String confirmNewPassword) {
+		waitForElementVissible(driver, MyAccountPageUI.CONFIRM_PASSWORD_TEXTBOX);
+		sendkeyToElement(driver, MyAccountPageUI.CONFIRM_PASSWORD_TEXTBOX, confirmNewPassword);	
+	}
+
 }

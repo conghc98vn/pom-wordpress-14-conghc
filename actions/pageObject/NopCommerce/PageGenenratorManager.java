@@ -39,4 +39,7 @@ public class PageGenenratorManager {
 		return new MyAccountPageObject(driver);
 	}
 
+	public static ProductDetailsPageObject getProductDetailsPage(WebDriver driver) {
+		return new ProductDetailsPageObject(driver);
+	}
 }

@@ -40,4 +40,10 @@ public class MyAccountPageUI{
 	public static final String ADDRESS_2_TEXT = "//li[@class='address2']";
 	public static final String CITY_AND_ZIP_POSTAL_CODE_ADDRESS_TEXT = "//li[@class='city-state-zip']";
 	public static final String COUNTRY_ADDRESS_TEXT = "//li[@class='country']";
+	
+	//Password
+	public static final String OLD_PASSWORD_TEXTBOX = "//input[@name='OldPassword']";
+	public static final String NEW_PASSWORD_TEXTBOX = "//input[@name='NewPassword']";
+	public static final String CONFIRM_PASSWORD_TEXTBOX = "//input[@name='ConfirmNewPassword']";
+	public static final String CHANGE_PASSWORD_BUTTON = "//input[@value='Change password']";
 }

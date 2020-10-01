@@ -36,5 +36,6 @@ public class AbstractPageUI {
 	public static final String SHIPPING_AND_RETURN_LINK = "";
 	public static final String SIMEMAP_LINK = "";
 	public static final String LOGIN_BUTTON_NOP = "//a[@class='ico-login']";
+	public static final String LOGOUT_BUTTON_NOP = "//a[@class='ico-logout']";
 	public static final String MYACCOUNT_BUTTON_NOP = "//a[@class='ico-account']";
 }

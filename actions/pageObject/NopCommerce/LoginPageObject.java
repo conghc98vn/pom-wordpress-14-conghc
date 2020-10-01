@@ -12,9 +12,10 @@ public class LoginPageObject extends AbstractPage {
 		this.driver = driver;
 	}
 
-	public void clickToLoginButton() {
+	public HomePageObject clickToLoginButton() {
 		waitForElementVissible(driver, LoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+		return PageGenenratorManager.getHomePage(driver);
 	}
 
 	public void inputToEmailTextbox(String emailValue) {

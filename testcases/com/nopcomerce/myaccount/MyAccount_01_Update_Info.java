@@ -9,13 +9,19 @@ import org.testng.annotations.Test;
 import com.nopcommerce.register.Register_01_Validate_Register_Form;
 
 import commons.AbstractTest;
+import pageObject.NopCommerce.HomePageObject;
 import pageObject.NopCommerce.LoginPageObject;
 import pageObject.NopCommerce.MyAccountPageObject;
 import pageObject.NopCommerce.PageGenenratorManager;
+import pageObject.NopCommerce.ProductDetailsPageObject;
 import pageObject.NopCommerce.RegisterPageObject;
 
 public class MyAccount_01_Update_Info extends AbstractTest {
 	WebDriver driver;
+
+	String newPassword = "newpass" + Register_01_Validate_Register_Form.password;
+	String reviewTitle = "reviewTitle test";
+	String reviewText = "reviewText test";
 
 	@Parameters({ "browser" })
 	@BeforeClass
@@ -30,9 +36,11 @@ public class MyAccount_01_Update_Info extends AbstractTest {
 		registerPage.selectMonthDropdown("January");
 		registerPage.selectYearDropdown("2020");
 		registerPage.inputEmailTextbox(Register_01_Validate_Register_Form.email);
+		System.out.println(Register_01_Validate_Register_Form.email);
 		registerPage.inputCompanyNameTextbox("Testing Company");
 		registerPage.clickToNewseletterOptionsButton();
 		registerPage.inputPasswordTextbox(Register_01_Validate_Register_Form.password);
+		System.out.println(Register_01_Validate_Register_Form.password);
 		registerPage.inputConfirmPassword(Register_01_Validate_Register_Form.password);
 		registerPage.clickToRegisterButton();
 		verifyEquals(registerPage.getMessageRegisterSuccess(), "Your registration completed");
@@ -94,12 +102,38 @@ public class MyAccount_01_Update_Info extends AbstractTest {
 		verifyTrue(myAccountPage.getFaxNumberAddressText().contains("0987654321"));
 	}
 
-//	@Test
+	@Test
 	public void TC_03_Update_New_Password() {
+		myAccountPage.clickToDynamicLink(driver, "Change password");
+		myAccountPage.inputToOldPasswordTextbox(Register_01_Validate_Register_Form.password);
+		myAccountPage.inputToNewPasswordTextbox(newPassword);
+		myAccountPage.inputToConfirmPasswordTextbox(newPassword);
+		myAccountPage.clickToChangePasswordButton(driver);
+
+		myAccountPage.clickToLogoutButton(driver);
+		homePagePage = PageGenenratorManager.getHomePage(driver);
+		loginPage = homePagePage.clickToLoginHeaderButton(driver);
+		loginPage.inputToEmailTextbox(Register_01_Validate_Register_Form.email);
+		loginPage.inputToPasswordTextbox(Register_01_Validate_Register_Form.password);
+		loginPage.clickToLoginButton();
+
+		loginPage.sleepInSecond(2);
+
+		loginPage.inputToEmailTextbox(Register_01_Validate_Register_Form.email);
+		loginPage.inputToPasswordTextbox(newPassword);
+		homePagePage = loginPage.clickToLoginButton();
 	}
 
-//	@Test
+	@Test
 	public void TC_04_Add_New_Review() {
+		productDetailsPage = homePagePage.clickToAddToCartButtonFirst();
+		
+		productDetailsPage.clickToDynamicLink(driver, "Add your review");
+		productDetailsPage.inputToReviewTitleTextbox(reviewTitle);
+		productDetailsPage.inputToReviewTextTextbox(reviewText);
+		productDetailsPage.clickToSubmitReview();
+		
+		verifyTrue(productDetailsPage.getReviewTextText(reviewText).contains(reviewText));
 	}
 
 	@AfterClass(alwaysRun = true)
@@ -110,4 +144,6 @@ public class MyAccount_01_Update_Info extends AbstractTest {
 	RegisterPageObject registerPage;
 	LoginPageObject loginPage;
 	MyAccountPageObject myAccountPage;
+	HomePageObject homePagePage;
+	ProductDetailsPageObject productDetailsPage;
 }

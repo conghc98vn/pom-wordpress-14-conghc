@@ -36,6 +36,7 @@ import pageObjects.wordpress.admin.PagesPageObject;
 import pageObjects.wordpress.admin.PostsPageObject;
 import pageObjects.wordpress.user.PostDetailPageObject;
 import pageObjects.wordpress.user.SearchResultPageObject;
+import pageUI.NopCommerce.MyAccountPageUI;
 import pageUI.bankGuru.AbstractPageBankGuruUI;
 
 //public abstract class AbstractPage {
@@ -695,6 +696,7 @@ public class AbstractPage {
 	}
 
 	public void clickToDynamicLink(WebDriver driver, String linkPageName) {
+		scrollToElement(driver, AbstractPageBankGuruUI.DYNAMIC_LINK, linkPageName);
 		waitForElementsClickable(driver, AbstractPageBankGuruUI.DYNAMIC_LINK, linkPageName);
 		clickToElement(driver, AbstractPageBankGuruUI.DYNAMIC_LINK, linkPageName);
 	}
@@ -709,6 +711,11 @@ public class AbstractPage {
 		return getElementText(driver, AbstractPageBankGuruUI.DYNAMIC_VALUE_BY_COLUMN_NAME, columnName);
 	}
 	// Common Page - NopCommerce
+
+	public void clickToChangePasswordButton(WebDriver driver) {
+		waitForElementClickable(driver, MyAccountPageUI.CHANGE_PASSWORD_BUTTON);
+		clickToElement(driver, MyAccountPageUI.CHANGE_PASSWORD_BUTTON);
+	}
 
 	public FooterMyAccountPageObject clickToFooterMyAccountMenu(WebDriver driver) {
 		waitForElementInvissible(driver, AbstractPageUI.FOOTER_MY_ACCOUNT_LINK);
@@ -746,9 +753,15 @@ public class AbstractPage {
 		return pageObject.NopCommerce.PageGenenratorManager.getSitemapPage(driver);
 	}
 
-	public LoginPageObject clickToLoginButton(WebDriver driver) {
+	public LoginPageObject clickToLoginHeaderButton(WebDriver driver) {
 		waitForElementsVissible(driver, AbstractPageUI.LOGIN_BUTTON_NOP);
 		clickToElement(driver, AbstractPageUI.LOGIN_BUTTON_NOP);
+		return pageObject.NopCommerce.PageGenenratorManager.getLoginPage(driver);
+	}
+
+	public LoginPageObject clickToLogoutButton(WebDriver driver) {
+		waitForElementsVissible(driver, AbstractPageUI.LOGOUT_BUTTON_NOP);
+		clickToElement(driver, AbstractPageUI.LOGOUT_BUTTON_NOP);
 		return pageObject.NopCommerce.PageGenenratorManager.getLoginPage(driver);
 	}
 

@@ -3,7 +3,6 @@ package pageObject.NopCommerce;
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPage;
-import pageUI.bankGuru.HomePageUI;
 
 public class HomePageObject extends AbstractPage{
 	WebDriver driver;
@@ -12,8 +11,10 @@ public class HomePageObject extends AbstractPage{
 		this.driver = driver;
 	}
 
-	public boolean isWelcomeMessageDisplayed() {
-		return isElementDisplay(driver, HomePageUI.WELCOME_MESSAGE_TEXT);
+	public ProductDetailsPageObject clickToAddToCartButtonFirst() {
+		waitForElementClickable(driver, pageUI.NopCommerce.HomePageUI.ADD_TO_CART_BUTTON_FIRST_BUTTON);
+		clickToElement(driver, pageUI.NopCommerce.HomePageUI.ADD_TO_CART_BUTTON_FIRST_BUTTON);
+		return PageGenenratorManager.getProductDetailsPage(driver);
 	}
 	
 }
